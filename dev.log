@@ -1,0 +1,933 @@
+
+> nextjs@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.0.0.2:3000
+
+ ✓ Starting...
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'swcMinify'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 1907ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1463ms (830 modules)
+ GET / 200 in 2649ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1738ms (848 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 2143ms
+ HEAD / 200 in 188ms
+ ○ Compiling /product/[id] ...
+ ✓ Compiled /product/[id] in 1281ms (850 modules)
+ GET /product/68 200 in 3040ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 156ms
+ GET / 200 in 86ms
+ ✓ Compiled /search in 462ms (857 modules)
+ GET /search?q=mewmew 200 in 575ms
+ GET / 200 in 92ms
+ ✓ Compiled /noodpakketten in 369ms (847 modules)
+ GET /noodpakketten?category=uncategorized 200 in 587ms
+ GET / 200 in 51ms
+ ✓ Compiled /contact in 342ms (854 modules)
+ GET /contact 200 in 445ms
+ GET / 200 in 53ms
+ GET /noodpakketten 200 in 43ms
+ GET / 200 in 32ms
+ ✓ Compiled /product/[id] in 125ms (509 modules)
+ GET /product/68 200 in 276ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 537ms (885 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /checkout 200 in 763ms
+ ✓ Compiled /cart in 364ms (887 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /cart 200 in 629ms
+ GET /checkout 200 in 28ms
+ GET / 200 in 60ms
+ GET / 200 in 255ms
+ GET /noodpakketten 200 in 41ms
+ GET / 200 in 34ms
+ GET /noodpakketten 200 in 28ms
+ GET /noodpakketten 200 in 128ms
+ GET /noodpakketten 200 in 95ms
+ GET /noodpakketten 200 in 101ms
+ GET /noodpakketten?category=famillie-pakketen 200 in 781ms
+ GET /product/73 200 in 504ms
+ GET / 200 in 35ms
+ GET /noodpakketten?category=uitgebreide-pakketten 200 in 47ms
+ GET / 200 in 42ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1642ms (886 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1959ms
+ GET / 200 in 63ms
+ GET /product/68 200 in 67ms
+ ✓ Compiled in 796ms (381 modules)
+ GET /product/68 200 in 40ms
+ ✓ Compiled in 998ms (879 modules)
+ GET /product/68 200 in 99ms
+ ✓ Compiled in 1506ms (888 modules)
+ GET /product/68 200 in 399ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /product/68 200 in 892ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 846ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1217ms
+ GET /trusted-shops.png 404 in 1190ms
+ GET /thuiswinkel.png 404 in 1186ms
+ GET /thuiswinkel.png 404 in 318ms
+ GET /trusted-shops.png 404 in 323ms
+ ✓ Compiled in 817ms (902 modules)
+ GET /product/68 200 in 139ms
+ ✓ Compiled in 554ms (902 modules)
+ GET /product/68 200 in 93ms
+ ✓ Compiled in 504ms (902 modules)
+ GET /product/68 200 in 81ms
+ ✓ Compiled in 581ms (902 modules)
+ GET /product/68 200 in 168ms
+ ✓ Compiled in 429ms (902 modules)
+ GET /product/68 200 in 65ms
+ ✓ Compiled in 454ms (902 modules)
+ GET /product/68 200 in 68ms
+ ✓ Compiled in 905ms (902 modules)
+ GET /product/68 200 in 235ms
+ ✓ Compiled in 454ms (902 modules)
+ GET /product/68 200 in 64ms
+ ✓ Compiled in 481ms (902 modules)
+ GET /product/68 200 in 73ms
+ ✓ Compiled in 617ms (902 modules)
+ GET /product/68 200 in 120ms
+ ✓ Compiled in 528ms (902 modules)
+ GET /product/68 200 in 127ms
+ ✓ Compiled in 902ms (902 modules)
+ GET /product/68 200 in 122ms
+ ✓ Compiled in 1461ms (902 modules)
+ GET /product/68 200 in 367ms
+ ✓ Compiled in 1116ms (902 modules)
+ GET /product/68 200 in 399ms
+ ✓ Compiled in 558ms (902 modules)
+ GET /product/68 200 in 138ms
+ ✓ Compiled in 958ms (902 modules)
+ GET /product/68 200 in 123ms
+ GET / 200 in 423ms
+ GET /product/73 200 in 19ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 887ms (892 modules)
+ GET /thuiswinkel.png 404 in 1424ms
+ GET /trusted-shops.png 404 in 1426ms
+ GET /noodpakketten 200 in 80ms
+ GET /noodpakketten?category=uncategorized 200 in 18ms
+ GET /product/61 200 in 249ms
+ GET /thuiswinkel.png 404 in 1269ms
+ GET /trusted-shops.png 404 in 1375ms
+ ✓ Compiled in 1499ms (906 modules)
+ GET /product/68 200 in 270ms
+ GET /product/61 200 in 273ms
+ ✓ Compiled in 610ms (906 modules)
+ GET /product/61 200 in 165ms
+ GET /product/68 200 in 168ms
+ ✓ Compiled in 530ms (906 modules)
+ GET /product/68 200 in 85ms
+ GET /product/61 200 in 86ms
+ ✓ Compiled in 702ms (902 modules)
+ GET /product/68 200 in 217ms
+ GET /product/61 200 in 222ms
+ ✓ Compiled in 502ms (902 modules)
+ GET /product/61 200 in 211ms
+ GET /product/68 200 in 214ms
+ ✓ Compiled in 2s (902 modules)
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+ GET /product/61 200 in 2026ms
+ GET /product/68 200 in 2483ms
+ GET /product/61 200 in 2628ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 3.7s (892 modules)
+ GET /thuiswinkel.png 404 in 4340ms
+ GET /trusted-shops.png 404 in 4343ms
+ GET /product/68 200 in 244ms
+ GET /product/61 200 in 243ms
+ ✓ Compiled in 292ms (387 modules)
+ GET /product/68 200 in 54ms
+ GET /product/61 200 in 59ms
+ ✓ Compiled in 1025ms (906 modules)
+ GET /product/61 200 in 334ms
+ GET /product/68 200 in 361ms
+ ✓ Compiled in 762ms (908 modules)
+ GET /product/68 200 in 289ms
+ GET /product/61 200 in 300ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1117ms (906 modules)
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+ ⨯ ReferenceError: ImageDebugger is not defined
+    at ProductDetailEnhanced (app/product/[id]/ProductDetailEnhanced.tsx:393:15)
+  391 |             {/* Temporary debug component */}
+  392 |             {mainImage.src && (
+> 393 |               <ImageDebugger src={mainImage.src} alt={mainImage.alt || product.name} priority />
+      |               ^
+  394 |             )}
+  395 |
+  396 |           </div> {
+  digest: '1179072833'
+}
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+ ⨯ ReferenceError: ImageDebugger is not defined
+    at ProductDetailEnhanced (app/product/[id]/ProductDetailEnhanced.tsx:393:15)
+  391 |             {/* Temporary debug component */}
+  392 |             {mainImage.src && (
+> 393 |               <ImageDebugger src={mainImage.src} alt={mainImage.alt || product.name} priority />
+      |               ^
+  394 |             )}
+  395 |
+  396 |           </div> {
+  digest: '1179072833'
+}
+ GET /product/61 500 in 634ms
+ GET /product/68 500 in 633ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 486ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 5.1s (906 modules)
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+Image gallery wrapper rendered
+Container aspect-square class applied
+Main image src: https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg
+Main image dimensions: {
+  id: 62,
+  date_created: '2025-07-03T19:24:26',
+  date_created_gmt: '2025-07-03T19:24:26',
+  date_modified: '2025-07-03T19:24:26',
+  date_modified_gmt: '2025-07-03T19:24:26',
+  src: 'https://wordpress.restaurantmahzen.nl/wp-content/uploads/2025/07/1.jpeg',
+  name: '_ (1)',
+  alt: ''
+}
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 214ms
+ GET /product/68 200 in 2501ms
+ GET /thuiswinkel.png 404 in 220ms
+ GET /trusted-shops.png 404 in 224ms
+ GET / 200 in 3392ms
+ GET /thuiswinkel.png 404 in 796ms
+ GET /trusted-shops.png 404 in 803ms
+ GET /noodpakketten?category=uncategorized 200 in 39ms
+ GET /product/61 200 in 33ms
+ GET /trusted-shops.png 404 in 286ms
+ GET /thuiswinkel.png 404 in 286ms
+ ✓ Compiled in 6.8s (906 modules)
+ GET /product/68 200 in 656ms
+ GET /product/61 200 in 682ms
+ GET /product/61 200 in 572ms
+ GET /trusted-shops.png 404 in 251ms
+ GET /thuiswinkel.png 404 in 248ms
+ ✓ Compiled in 2.9s (892 modules)
+ GET /trusted-shops.png 404 in 2037ms
+ GET /thuiswinkel.png 404 in 2004ms
+ GET /product/68 200 in 584ms
+ GET /product/61 200 in 588ms
+ GET /noodpakketten 200 in 566ms
+ GET /noodpakketten?category=famillie-pakketen 200 in 450ms
+ GET /product/73 200 in 18ms
+ GET /thuiswinkel.png 404 in 122ms
+ GET /trusted-shops.png 404 in 124ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 181ms
+ ✓ Compiled in 3.5s (906 modules)
+ GET /product/73 200 in 641ms
+ GET /product/68 200 in 743ms
+ ✓ Compiled in 6.1s (387 modules)
+ GET /product/68 200 in 732ms
+ GET /product/73 200 in 523ms
+ ✓ Compiled in 816ms (902 modules)
+ GET /product/73 200 in 218ms
+ GET /product/68 200 in 233ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1053ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1611ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 4.4s (892 modules)
+ GET /thuiswinkel.png 404 in 4707ms
+ GET /trusted-shops.png 404 in 4688ms
+ GET /trusted-shops.png 404 in 7421ms
+ GET /thuiswinkel.png 404 in 7460ms
+ GET /product/68 200 in 8547ms
+ GET /product/73 200 in 8919ms
+ GET /product/68 200 in 219ms
+ GET /trusted-shops.png 404 in 344ms
+ GET /thuiswinkel.png 404 in 344ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 331ms
+ GET /thuiswinkel.png 404 in 496ms
+ GET /trusted-shops.png 404 in 517ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.7s (892 modules)
+ GET /thuiswinkel.png 404 in 1915ms
+ GET /trusted-shops.png 404 in 1918ms
+ GET /trusted-shops.png 404 in 144ms
+ GET /thuiswinkel.png 404 in 147ms
+ GET /product/68 200 in 231ms
+ GET /product/73 200 in 233ms
+ ✓ Compiled in 953ms (892 modules)
+ GET /trusted-shops.png 404 in 903ms
+ GET /thuiswinkel.png 404 in 901ms
+ GET /trusted-shops.png 404 in 107ms
+ GET /thuiswinkel.png 404 in 106ms
+ GET /product/68 200 in 186ms
+ GET /product/73 200 in 191ms
+ ✓ Compiled in 1353ms (906 modules)
+ GET /thuiswinkel.png 404 in 1232ms
+ GET /trusted-shops.png 404 in 1233ms
+ GET /trusted-shops.png 404 in 106ms
+ GET /thuiswinkel.png 404 in 141ms
+ GET /product/68 200 in 149ms
+ GET /product/73 200 in 150ms
+ GET /product/68 200 in 219ms
+ GET /thuiswinkel.png 404 in 292ms
+ GET /trusted-shops.png 404 in 297ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 288ms
+ GET /trusted-shops.png 404 in 503ms
+ GET /thuiswinkel.png 404 in 430ms
+ GET /trusted-shops.png 404 in 447ms
+ GET /thuiswinkel.png 404 in 451ms
+ GET /product/68 200 in 1236ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 267ms
+ GET /trusted-shops.png 404 in 272ms
+ GET /thuiswinkel.png 404 in 278ms
+ GET /product/68 200 in 163ms
+ GET /trusted-shops.png 404 in 186ms
+ GET /thuiswinkel.png 404 in 182ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 109ms
+ GET /trusted-shops.png 404 in 409ms
+ GET /thuiswinkel.png 404 in 347ms
+ GET /noodpakketten 200 in 75ms
+ GET /noodpakketten?category=famillie-pakketen 200 in 46ms
+ GET /noodpakketten?category=uncategorized 200 in 24ms
+ GET /noodpakketten?category=ouderen-pakket 200 in 446ms
+ GET /product/68 200 in 70ms
+ GET /trusted-shops.png 404 in 124ms
+ GET /thuiswinkel.png 404 in 124ms
+ GET /product/68 200 in 105ms
+ GET /thuiswinkel.png 404 in 132ms
+ GET /trusted-shops.png 404 in 134ms
+ GET /trusted-shops.png 404 in 193ms
+ GET /thuiswinkel.png 404 in 196ms
+ ✓ Compiled in 1278ms (902 modules)
+ GET /product/68 200 in 259ms
+ GET /product/68 200 in 73ms
+ GET /product/68 200 in 329ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1143ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 5749ms
+ GET /thuiswinkel.png 404 in 5758ms
+ GET /trusted-shops.png 404 in 5776ms
+ GET /trusted-shops.png 404 in 401ms
+ GET /thuiswinkel.png 404 in 389ms
+ ✓ Compiled in 545ms (906 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /product/68 200 in 406ms
+ GET /_next/static/webpack/9abb19b37b271099.webpack.hot-update.json 404 in 374ms
+ GET /product/68 200 in 109ms
+ GET /product/68 200 in 280ms
+ ⨯ Failed to generate static paths for /product/[id]:
+[Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Failed to generate static paths for /product/[id]:
+[Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Failed to generate static paths for /product/[id]:
+[Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 432ms
+ GET /trusted-shops.png 404 in 439ms
+ GET /thuiswinkel.png 404 in 438ms
+ GET /_next/static/chunks/main-app.js?v=1752080586926 404 in 250ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 248ms
+ GET /_next/static/chunks/app/product/%5Bid%5D/page.js 404 in 216ms
+ ✓ Compiled in 707ms (902 modules)
+ ⨯ [Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 619ms (1222 modules)
+ GET /product/68 500 in 1637ms
+ ⨯ [Error: Cannot find module './vendor-chunks/web-vitals.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ GET /product/68 500 in 593ms
+ ⨯ [Error: Cannot find module './vendor-chunks/web-vitals.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ GET /product/68 500 in 614ms
+ ⨯ [Error: Cannot find module './vendor-chunks/web-vitals.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ GET /product/68 500 in 563ms
+ ⨯ [Error: Cannot find module './vendor-chunks/web-vitals.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ GET /product/68 500 in 688ms
+ ✓ Compiled /_not-found in 446ms (1226 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 652ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 138ms
+ GET /_next/static/chunks/main-app.js?v=1752080935300 404 in 441ms
+ GET / 200 in 720ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 349ms
+ GET /_next/static/chunks/app/page.js 404 in 207ms
+ GET /noodpakketten 200 in 140ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 322ms
+ GET /_next/static/chunks/app/noodpakketten/page.js 404 in 472ms
+ GET /_next/static/chunks/main-app.js?v=1752080941565 404 in 479ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 480ms
+ GET /noodpakketten?category=uncategorized 200 in 3587ms
+ GET /_next/static/chunks/main-app.js?v=1752080943702 404 in 422ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 375ms
+ GET /_next/static/chunks/app/noodpakketten/page.js 404 in 355ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 286ms
+ GET /noodpakketten?category=famillie-pakketen 200 in 696ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 419ms
+ GET /_next/static/chunks/main-app.js?v=1752080950632 404 in 627ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 621ms
+ GET /_next/static/chunks/app/noodpakketten/page.js 404 in 544ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 198ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 207ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 121ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 67ms
+ GET /noodpakketten?category=ouderen-pakket 200 in 105ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 100ms
+ GET /_next/static/chunks/main-app.js?v=1752080954340 404 in 281ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 283ms
+ GET /_next/static/chunks/app/noodpakketten/page.js 404 in 89ms
+ ⨯ [Error: Cannot find module './vendor-chunks/web-vitals.js'
+Require stack:
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/webpack-runtime.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/.next/server/app/product/[id]/page.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/require.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/load-components.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/build/utils.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/miladazizi/Desktop/nextjs/nextjs/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/product/68'
+}
+ GET /product/68 500 in 737ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 68ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.3.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.0.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 1692ms
+ ○ Compiling /product/[id] ...
+ ✓ Compiled /product/[id] in 4.6s (860 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/504e336ae44cc6ed.webpack.hot-update.json 404 in 5000ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /product/68 200 in 5076ms
+ GET /_next/static/webpack/504e336ae44cc6ed.webpack.hot-update.json 404 in 89ms
+ GET /product/68 200 in 1403ms
+ GET /trusted-shops.png 404 in 124ms
+ GET /thuiswinkel.png 404 in 106ms
+ GET /product/68 200 in 316ms
+ GET /trusted-shops.png 404 in 62ms
+ GET /thuiswinkel.png 404 in 67ms
+ GET /thuiswinkel.png 404 in 254ms
+ GET /trusted-shops.png 404 in 256ms
+ GET /trusted-shops.png 404 in 81ms
+ GET /thuiswinkel.png 404 in 80ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 131ms
+ ✓ Compiled in 696ms (838 modules)
+ GET /product/68 200 in 181ms
+ GET /product/68 200 in 67ms
+ ✓ Compiled in 1135ms (838 modules)
+ GET /product/68 200 in 322ms
+ GET /product/68 200 in 52ms
+ ✓ Compiled /_not-found in 968ms (842 modules)
+ GET /trusted-shops.png 404 in 826ms
+ GET /thuiswinkel.png 404 in 828ms
+ GET /thuiswinkel.png 404 in 311ms
+ GET /trusted-shops.png 404 in 312ms
+ GET /product/68 200 in 405ms
+ GET /product/68 200 in 76ms
+ ✓ Compiled in 446ms (842 modules)
+ GET /product/68 200 in 230ms
+ GET /product/68 200 in 70ms
+ GET /thuiswinkel.png 404 in 1245ms
+ GET /trusted-shops.png 404 in 1249ms
+ GET /thuiswinkel.png 404 in 117ms
+ GET /trusted-shops.png 404 in 119ms
+ ✓ Compiled in 327ms (842 modules)
+ GET /product/68 200 in 198ms
+ GET /product/68 200 in 56ms
+ ✓ Compiled in 765ms (838 modules)
+ GET /product/68 200 in 215ms
+ GET /product/68 200 in 52ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 711ms (828 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1838ms
+ ✓ Compiled in 704ms (838 modules)
+ GET /product/68 200 in 365ms
+ ✓ Compiled /_not-found in 191ms (828 modules)
+ GET /trusted-shops.png 404 in 597ms
+ GET /thuiswinkel.png 404 in 595ms
+ GET /thuiswinkel.png 404 in 217ms
+ GET /trusted-shops.png 404 in 231ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 260ms
+ GET /trusted-shops.png 404 in 265ms
+ GET /thuiswinkel.png 404 in 279ms
+ GET /product/68 200 in 584ms
+ GET /trusted-shops.png 404 in 512ms
+ GET /thuiswinkel.png 404 in 512ms
+ ✓ Compiled in 1116ms (838 modules)
+ ✓ Compiled /_not-found in 251ms (828 modules)
+ GET /trusted-shops.png 404 in 1903ms
+ GET /thuiswinkel.png 404 in 1902ms
+ GET /product/68 200 in 1792ms
+ ✓ Compiled in 320ms (842 modules)
+ GET /product/68 200 in 111ms
+ ✓ Compiled in 837ms (838 modules)
+ GET /product/68 200 in 171ms
+ GET /product/68 200 in 290ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 693ms (828 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1181ms
+ GET /trusted-shops.png 404 in 1184ms
+ GET /thuiswinkel.png 404 in 1183ms
+ GET /thuiswinkel.png 404 in 202ms
+ GET /trusted-shops.png 404 in 204ms
+ ✓ Compiled in 446ms (842 modules)
+ GET /product/68 200 in 113ms
+ ✓ Compiled in 415ms (838 modules)
+ GET /product/68 200 in 101ms
+ ✓ Compiled in 460ms (838 modules)
+ GET /product/68 200 in 102ms
+ ✓ Compiled in 523ms (838 modules)
+ GET /product/68 200 in 97ms
+ GET /product/68 200 in 250ms
+ ✓ Compiled /_not-found in 355ms (828 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 789ms
+ ✓ Compiled in 390ms (842 modules)
+ GET /product/68 200 in 96ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 146ms
+ GET /product/68 200 in 406ms
+ ✓ Compiled in 1494ms (842 modules)
+ GET /product/68 200 in 139ms
+ ✓ Compiled in 587ms (838 modules)
+ GET /product/68 200 in 159ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 961ms (851 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /checkout 200 in 1308ms
+ ✓ Compiled /_not-found in 196ms (845 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 425ms
+ GET /product/68 200 in 218ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 111ms
+ ⨯ Module not found: Error: Can't resolve 'next-flight-client-entry-loader' in '/Users/miladazizi/Desktop/nextjs/nextjs'
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+ ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+ ⨯ Module not found: Error: Can't resolve 'next-flight-client-entry-loader' in '/Users/miladazizi/Desktop/nextjs/nextjs'
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/miladazizi/Desktop/nextjs/nextjs/app'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/miladazizi/Desktop/nextjs/nextjs/app'
+}

@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-blue: #1F2A44;
+  --color-off-white: #F5F6F8;
+  --color-medical-green: #93c84a;
+  --color-amber-orange: #ff8101;
+  --color-steel-gray: #333333;
+}
+
+:root {
+  /* Brand Colors */
+  --navy-blue: #1F2A44;
+  --off-white: #F5F6F8;
+  --medical-green: #93c84a;
+  --amber-orange: #ff8101;
+  --steel-gray: #333333;
+  
+  /* Legacy mappings for smooth transition */
+  --background: var(--off-white);
+  --foreground: var(--navy-blue);
+  --primary: var(--amber-orange);
+  --primary-hover: #e67935;
+  --success: var(--medical-green);
+  --gray-dark: var(--steel-gray);
+  --gray-light: var(--off-white);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode adjustments - keeping brand colors consistent */
+    --background: #0a0a0a;
+    --foreground: var(--off-white);
+    --primary-hover: #ff9955;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Constrain all icon sizes */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix any potential image sizing issues */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent image overflow issues - removed global * selector as it can cause layout issues */
+
+/* Reset any problematic icon styling */
+.icon, 
+[class*="icon"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Custom utility classes for brand colors */
+.bg-navy-blue { background-color: var(--navy-blue); }
+.bg-off-white { background-color: var(--off-white); }
+.bg-medical-green { background-color: var(--medical-green); }
+.bg-amber-orange { background-color: var(--amber-orange); }
+.hover\:bg-amber-orange\/90:hover { background-color: rgba(255, 129, 1, 0.9); }
+.bg-amber-orange\/10 { background-color: rgba(255, 129, 1, 0.1); }
+.hover\:bg-amber-orange\/10:hover { background-color: rgba(255, 129, 1, 0.1); }
+.text-navy-blue { color: var(--navy-blue); }
+.text-off-white { color: var(--off-white); }
+.text-medical-green { color: var(--medical-green); }
+.text-amber-orange { color: var(--amber-orange); }
+.text-steel-gray { color: var(--steel-gray); }
+.text-steel-gray\/80 { color: rgba(51, 51, 51, 0.8); }
+.placeholder-steel-gray::placeholder { color: rgba(51, 51, 51, 0.7); }
+.border-navy-blue { border-color: var(--navy-blue); }
+.border-medical-green { border-color: var(--medical-green); }
+.border-amber-orange { border-color: var(--amber-orange); }
+
+/* Header specific styles */
+.nav-container {
+  position: relative;
+  box-shadow: 0 2px 30px rgba(31, 42, 68, 0.08);
+  border-bottom: 1px solid rgba(31, 42, 68, 0.08);
+}
+
+.nav-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.logo-shield {
+  filter: drop-shadow(0 2px 8px rgba(255, 129, 1, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.logo-shield:hover {
+  transform: scale(1.05);
+}
+
+.nav-cta {
+  box-shadow: 0 4px 20px rgba(255, 129, 1, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-image: linear-gradient(135deg, #ff8101 0%, #ff7733 100%);
+}
+
+.nav-cta:hover {
+  box-shadow: 0 8px 28px rgba(255, 129, 1, 0.35);
+  transform: translateY(-2px);
+}
+
+.nav-cart {
+  box-shadow: 0 2px 12px rgba(31, 42, 68, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-cart:hover {
+  box-shadow: 0 4px 20px rgba(255, 140, 66, 0.15);
+  transform: translateY(-1px);
+}
+
+.cart-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 66, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 140, 66, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 66, 0);
+  }
+}
+
+/* Mobile menu animation */
+.nav-toggle span {
+  transform-origin: center;
+}
+
+/* Ensure aspect-square containers work properly */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Ensure Next.js images fill their containers */
+.aspect-square img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 1023px) {
+  /* Mobile menu overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-cta {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .logo-shield svg {
+    width: 32px;
+    height: 36px;
+  }
+  
+  .cart-icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cart-badge {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.625rem;
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-container nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Desktop adjustments for smaller screens */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .nav-cta {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* FAQ animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
