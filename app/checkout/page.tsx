@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useCart } from '../contexts/CartContext';
 import { woocommerce } from '@/lib/woocommerce';
+import CouponInput from '../components/CouponInput';
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, getTotalPrice, clearCart } = useCart();
+  const { items, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, appliedCoupon, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showOrderSummary, setShowOrderSummary] = useState(false);
@@ -35,10 +36,12 @@ export default function CheckoutPage() {
 
   // Calculate pricing details
   const subtotal = getTotalPrice();
+  const discountAmount = getDiscountAmount();
+  const subtotalAfterDiscount = getTotalPriceAfterDiscount();
   const shippingCost = shippingRates[formData.country] || 0;
   const vatRate = 0.21; // 21% VAT
-  const vatAmount = (subtotal + shippingCost) * vatRate;
-  const total = subtotal + shippingCost + vatAmount;
+  const vatAmount = (subtotalAfterDiscount + shippingCost) * vatRate;
+  const total = subtotalAfterDiscount + shippingCost + vatAmount;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -65,10 +68,24 @@ export default function CheckoutPage() {
           email: formData.email,
           phone: formData.phone,
         },
+        shipping: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          address_1: formData.address,
+          address_2: formData.address2,
+          city: formData.city,
+          postcode: formData.postcode,
+          country: formData.country,
+        },
         line_items: items.map(item => ({
           product_id: item.product.id,
           quantity: item.quantity,
         })),
+        ...(appliedCoupon && {
+          coupon_lines: [{
+            code: appliedCoupon.code
+          }]
+        })
       };
 
       const order = await woocommerce.createOrder(orderData);
@@ -175,6 +192,17 @@ export default function CheckoutPage() {
                   <span className="text-steel-gray">Subtotaal</span>
                   <span className="text-gray-900">€{subtotal.toFixed(2)}</span>
                 </div>
+                
+                {appliedCoupon && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>
+                      Korting
+                      {appliedCoupon.discount_type === 'percent' && ` (${appliedCoupon.amount}%)`}
+                    </span>
+                    <span>-€{discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+                
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">
                     Verzending naar {formData.country === 'NL' ? 'Nederland' : 
@@ -195,9 +223,10 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              
-              {/* Discount code section - placeholder for future implementation */}
-              {/* TODO: Add discount code display here when implemented */}
+              {/* Discount code section */}
+              <div className="mt-4 pt-4 border-t">
+                <CouponInput variant="compact" />
+              </div>
             </div>
           </div>
         )}
@@ -510,8 +539,20 @@ export default function CheckoutPage() {
                   <span className="text-gray-900">€{subtotal.toFixed(2)}</span>
                 </div>
                 
-                {/* Discount code section - placeholder for future implementation */}
-                {/* TODO: Add discount code display here when implemented */}
+                {appliedCoupon && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>
+                      Korting
+                      {appliedCoupon.discount_type === 'percent' && ` (${appliedCoupon.amount}%)`}
+                    </span>
+                    <span>-€{discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+                
+                {/* Discount code section */}
+                <div className="my-3 py-3 border-y">
+                  <CouponInput variant="compact" />
+                </div>
                 
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">

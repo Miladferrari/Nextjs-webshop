@@ -4,17 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '../contexts/CartContext';
 import { useState } from 'react';
+import CouponInput from '../components/CouponInput';
 
 export default function CartPage() {
-  const { items, removeFromCart, updateQuantity, getTotalPrice } = useCart();
+  const { items, removeFromCart, updateQuantity, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, appliedCoupon } = useCart();
   const [removingItems, setRemovingItems] = useState<number[]>([]);
-  const [showDiscountCode, setShowDiscountCode] = useState(false);
-  const [discountCode, setDiscountCode] = useState('');
-  const [appliedDiscount, setAppliedDiscount] = useState<{ code: string; percentage: number } | null>(null);
 
   // Calculate shipping threshold
   const shippingThreshold = 50;
-  const discountedTotal = getTotalPrice() - (appliedDiscount ? getTotalPrice() * appliedDiscount.percentage / 100 : 0);
+  const discountedTotal = getTotalPriceAfterDiscount();
   const remainingForFreeShipping = Math.max(0, shippingThreshold - discountedTotal);
   const progressPercentage = Math.min((discountedTotal / shippingThreshold) * 100, 100);
 
@@ -284,84 +282,8 @@ export default function CartPage() {
             </div>
             
             {/* Coupon code section */}
-            <div className="mt-6 bg-white rounded-xl shadow-sm p-6">
-              <div 
-                className="flex items-center justify-between cursor-pointer" 
-                onClick={() => setShowDiscountCode(!showDiscountCode)}
-              >
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                  </svg>
-                  <span className="font-medium text-navy-blue">Kortingscode toevoegen</span>
-                </div>
-                <svg 
-                  className={`w-5 h-5 text-steel-gray transform transition-transform ${showDiscountCode ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {showDiscountCode && (
-                <div className="mt-4 space-y-3">
-                  {appliedDiscount ? (
-                    <div className="flex items-center justify-between p-3 bg-medical-green/10 rounded-lg">
-                      <div className="flex items-center gap-2">
-                        <svg className="w-5 h-5 text-medical-green" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-medical-green font-medium">
-                          Code "{appliedDiscount.code}" toegepast: {appliedDiscount.percentage}% korting
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setAppliedDiscount(null);
-                          setDiscountCode('');
-                        }}
-                        className="text-red-500 hover:text-red-600 transition-colors"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                  ) : (
-                    <form 
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        // Mock discount code validation
-                        if (discountCode.toLowerCase() === 'welkom10') {
-                          setAppliedDiscount({ code: discountCode, percentage: 10 });
-                        } else if (discountCode.toLowerCase() === 'noodklaar20') {
-                          setAppliedDiscount({ code: discountCode, percentage: 20 });
-                        } else {
-                          alert('Ongeldige kortingscode');
-                        }
-                      }}
-                      className="flex gap-2"
-                    >
-                      <input
-                        type="text"
-                        value={discountCode}
-                        onChange={(e) => setDiscountCode(e.target.value)}
-                        placeholder="Voer kortingscode in"
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-medical-green focus:border-transparent"
-                      />
-                      <button
-                        type="submit"
-                        disabled={!discountCode.trim()}
-                        className="px-6 py-2 bg-medical-green text-white rounded-lg font-medium hover:bg-medical-green/90 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-                      >
-                        Toepassen
-                      </button>
-                    </form>
-                  )}
-                </div>
-              )}
+            <div className="mt-6">
+              <CouponInput />
             </div>
           </div>
           
@@ -380,15 +302,15 @@ export default function CartPage() {
                     <span className="font-medium">€{getTotalPrice().toFixed(2)}</span>
                   </div>
                   
-                  {appliedDiscount && (
+                  {appliedCoupon && (
                     <div className="flex justify-between items-center text-medical-green">
-                      <span>Korting ({appliedDiscount.percentage}%)</span>
-                      <span>-€{(getTotalPrice() * appliedDiscount.percentage / 100).toFixed(2)}</span>
+                      <span>Korting {appliedCoupon.discount_type === 'percent' && `(${appliedCoupon.amount}%)`}</span>
+                      <span>-€{getDiscountAmount().toFixed(2)}</span>
                     </div>
                   )}
                   <div className="flex justify-between items-center">
                     <span className="text-steel-gray">Verzending</span>
-                    {(getTotalPrice() - (appliedDiscount ? getTotalPrice() * appliedDiscount.percentage / 100 : 0)) >= shippingThreshold ? (
+                    {getTotalPriceAfterDiscount() >= shippingThreshold ? (
                       <span className="text-medical-green font-semibold">Gratis</span>
                     ) : (
                       <span>€4,95</span>
@@ -406,9 +328,8 @@ export default function CartPage() {
                     <div className="text-right">
                       <span className="text-2xl font-bold text-medical-green">
                         €{(
-                          getTotalPrice() - 
-                          (appliedDiscount ? getTotalPrice() * appliedDiscount.percentage / 100 : 0) + 
-                          (getTotalPrice() < shippingThreshold ? 4.95 : 0)
+                          getTotalPriceAfterDiscount() + 
+                          (getTotalPriceAfterDiscount() < shippingThreshold ? 4.95 : 0)
                         ).toFixed(2)}
                       </span>
                       <p className="text-xs text-steel-gray">Incl. BTW</p>

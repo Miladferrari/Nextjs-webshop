@@ -18,8 +18,11 @@ interface CartContextType {
   clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
-  appliedCoupon: Coupon | null;
-  setAppliedCoupon: (coupon: Coupon | null) => void;
+  appliedCoupon: any | null;
+  applyDiscount: (coupon: any) => void;
+  removeDiscount: () => void;
+  getDiscountAmount: () => number;
+  getTotalPriceAfterDiscount: () => number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -28,7 +31,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
+  const [appliedCoupon, setAppliedCoupon] = useState<any | null>(null);
 
   // Load cart from localStorage on mount (client-side only)
   useEffect(() => {
@@ -40,6 +43,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         console.error('Failed to parse cart from localStorage:', error);
       }
     }
+    
+    // Load saved coupon
+    const savedCoupon = localStorage.getItem('noodklaar-coupon');
+    if (savedCoupon) {
+      try {
+        setAppliedCoupon(JSON.parse(savedCoupon));
+      } catch (error) {
+        console.error('Failed to parse coupon from localStorage:', error);
+      }
+    }
+    
     setIsHydrated(true);
   }, []);
 
@@ -89,6 +103,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setItems([]);
+    setAppliedCoupon(null);
+    localStorage.removeItem('noodklaar-coupon');
   };
 
   const getTotalPrice = () => {
@@ -100,6 +116,36 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const getTotalItems = () => {
     return items.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const applyDiscount = (coupon: any) => {
+    setAppliedCoupon(coupon);
+    localStorage.setItem('noodklaar-coupon', JSON.stringify(coupon));
+  };
+
+  const removeDiscount = () => {
+    setAppliedCoupon(null);
+    localStorage.removeItem('noodklaar-coupon');
+  };
+
+  const getDiscountAmount = () => {
+    if (!appliedCoupon) return 0;
+    
+    const subtotal = getTotalPrice();
+    
+    if (appliedCoupon.discount_type === 'percent') {
+      return (subtotal * parseFloat(appliedCoupon.amount)) / 100;
+    } else if (appliedCoupon.discount_type === 'fixed_cart') {
+      return Math.min(parseFloat(appliedCoupon.amount), subtotal);
+    }
+    
+    return 0;
+  };
+
+  const getTotalPriceAfterDiscount = () => {
+    const subtotal = getTotalPrice();
+    const discount = getDiscountAmount();
+    return Math.max(0, subtotal - discount);
   };
 
   return (
@@ -114,7 +160,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       getTotalPrice,
       getTotalItems,
       appliedCoupon,
-      setAppliedCoupon
+      applyDiscount,
+      removeDiscount,
+      getDiscountAmount,
+      getTotalPriceAfterDiscount
     }}>
       {children}
     </CartContext.Provider>

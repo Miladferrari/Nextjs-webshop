@@ -5,15 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../contexts/CartContext';
-import { woocommerce } from '@/lib/woocommerce';
+import CouponInput from './CouponInput';
 
 export default function SlideInCart() {
-  const { items, removeFromCart, updateQuantity, getTotalPrice, isCartOpen, setIsCartOpen, appliedCoupon, setAppliedCoupon } = useCart();
+  const { items, removeFromCart, updateQuantity, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, isCartOpen, setIsCartOpen, appliedCoupon } = useCart();
   const [mounted, setMounted] = useState(false);
-  const [showCouponForm, setShowCouponForm] = useState(false);
-  const [couponCode, setCouponCode] = useState('');
-  const [couponError, setCouponError] = useState('');
-  const [isValidating, setIsValidating] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -25,49 +21,6 @@ export default function SlideInCart() {
     return null;
   }
 
-  const handleApplyCoupon = async () => {
-    setCouponError('');
-    setIsValidating(true);
-    
-    try {
-      const result = await woocommerce.validateCoupon(couponCode, getTotalPrice());
-      
-      if (result.valid && result.coupon) {
-        setAppliedCoupon(result.coupon);
-        setCouponCode('');
-        setShowCouponForm(false);
-      } else {
-        setCouponError(result.error || 'Ongeldige kortingscode');
-      }
-    } catch (error) {
-      setCouponError('Er is een fout opgetreden bij het valideren van de kortingscode');
-    } finally {
-      setIsValidating(false);
-    }
-  };
-
-  const removeCoupon = () => {
-    setAppliedCoupon(null);
-    setCouponError('');
-  };
-
-  const calculateDiscountAmount = () => {
-    if (!appliedCoupon) return 0;
-    
-    if (appliedCoupon.discount_type === 'percent') {
-      return (getTotalPrice() * parseFloat(appliedCoupon.amount)) / 100;
-    } else if (appliedCoupon.discount_type === 'fixed_cart') {
-      return parseFloat(appliedCoupon.amount);
-    }
-    
-    return 0;
-  };
-
-  const getFinalPrice = () => {
-    const discount = calculateDiscountAmount();
-    const finalPrice = getTotalPrice() - discount;
-    return finalPrice > 0 ? finalPrice : 0;
-  };
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -211,67 +164,7 @@ export default function SlideInCart() {
             <div className="bg-gradient-to-t from-gray-50 to-white border-t p-6">
               {/* Discount code section */}
               <div className="mb-4">
-                {!appliedCoupon && !showCouponForm && (
-                  <button
-                    onClick={() => setShowCouponForm(true)}
-                    className="text-steel-gray underline text-sm w-full py-2 text-right hover:text-medical-green"
-                    type="button"
-                    aria-expanded={showCouponForm}
-                  >
-                    <span>Kortingscode toepassen?</span>
-                  </button>
-                )}
-
-                {showCouponForm && !appliedCoupon && (
-                  <div className="space-y-2">
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={couponCode}
-                        onChange={(e) => setCouponCode(e.target.value)}
-                        placeholder="Voer kortingscode in"
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-medical-green text-black"
-                        onKeyPress={(e) => e.key === 'Enter' && handleApplyCoupon()}
-                      />
-                      <button
-                        onClick={handleApplyCoupon}
-                        disabled={isValidating || !couponCode.trim()}
-                        className="px-4 py-2 bg-medical-green text-white rounded-md hover:bg-medical-green/90 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-                      >
-                        {isValidating ? 'Valideren...' : 'Toepassen'}
-                      </button>
-                    </div>
-                    {couponError && (
-                      <p className="text-red-500 text-sm">{couponError}</p>
-                    )}
-                    <button
-                      onClick={() => {
-                        setShowCouponForm(false);
-                        setCouponCode('');
-                        setCouponError('');
-                      }}
-                      className="text-steel-gray text-sm underline"
-                    >
-                      Annuleren
-                    </button>
-                  </div>
-                )}
-
-                {appliedCoupon && (
-                  <div className="bg-green-50 p-3 rounded-md">
-                    <div className="flex justify-between items-center">
-                      <span className="text-green-700 text-sm">
-                        Kortingscode <strong>{appliedCoupon.code}</strong> toegepast
-                      </span>
-                      <button
-                        onClick={removeCoupon}
-                        className="text-red-500 hover:text-red-700 text-sm underline"
-                      >
-                        Verwijderen
-                      </button>
-                    </div>
-                  </div>
-                )}
+                <CouponInput variant="compact" />
               </div>
 
               {/* Subtotal */}
@@ -286,7 +179,7 @@ export default function SlideInCart() {
                       Korting
                       {appliedCoupon.discount_type === 'percent' && ` (${appliedCoupon.amount}%)`}
                     </span>
-                    <span>-€{calculateDiscountAmount().toFixed(2)}</span>
+                    <span>-€{getDiscountAmount().toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center text-steel-gray">
@@ -296,7 +189,7 @@ export default function SlideInCart() {
                 <div className="pt-3 border-t">
                   <div className="flex justify-between items-center">
                     <span className="text-xl font-bold text-navy-blue">Totaal</span>
-                    <span className="text-2xl font-bold text-medical-green">€{getFinalPrice().toFixed(2)}</span>
+                    <span className="text-2xl font-bold text-medical-green">€{getTotalPriceAfterDiscount().toFixed(2)}</span>
                   </div>
                 </div>
               </div>

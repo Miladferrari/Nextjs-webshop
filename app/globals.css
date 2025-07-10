@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+/* Emergency CSS Reset for favicon bug */
+html {
+  font-size: 16px !important;
+  overflow-x: hidden;
+}
+
+/* Hide any rogue favicon displays */
+head {
+  display: none !important;
+}
+
+/* Force hide any favicon images that might be rendered in body */
+body img[src*="favicon"],
+body img[src$=".ico"],
+body link[rel*="icon"] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
 @theme {
   --color-navy-blue: #1F2A44;
   --color-off-white: #F5F6F8;
@@ -56,16 +80,38 @@ svg {
 img {
   max-width: 100%;
   height: auto;
-  display: block;
 }
 
-/* Prevent image overflow issues - removed global * selector as it can cause layout issues */
+/* Specifically target favicon elements to prevent large display */
+link[rel="icon"],
+link[rel="shortcut icon"],
+link[rel="apple-touch-icon"] {
+  display: none !important;
+}
+
+/* Ensure favicon images in the body don't display large */
+img[src*="favicon"],
+img[src*=".ico"] {
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
 
 /* Reset any problematic icon styling */
 .icon, 
 [class*="icon"] {
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Ensure proper stacking context for main content */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix for Next.js Image component containers */
+[data-nimg] {
+  max-width: 100% !important;
 }
 
 /* Custom utility classes for brand colors */

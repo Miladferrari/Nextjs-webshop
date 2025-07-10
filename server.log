@@ -1,0 +1,187 @@
+
+> nextjs@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.2.12:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1519ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.2s (861 modules)
+ HEAD / 200 in 5618ms
+ GET / 200 in 238ms
+ ✓ Compiled /api/coupons/validate in 444ms (862 modules)
+Validating coupon: lol10 Cart total: 8
+Fetching from WooCommerce API...
+ GET / 200 in 182ms
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '0.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 400 in 1084ms
+ GET / 200 in 255ms
+Validating coupon: lol10 Cart total: 8
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 200 in 10938ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 740ms (860 modules)
+ GET /checkout 200 in 949ms
+ ✓ Compiled /api/coupons/validate in 100ms (509 modules)
+Validating coupon: lol10 Cart total: 8
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 200 in 743ms
+ ✓ Compiled /cart in 235ms (875 modules)
+ GET /cart 200 in 434ms
+ ✓ Compiled in 1022ms (871 modules)
+ GET /cart 200 in 131ms
+ ✓ Compiled /api/coupons/validate in 96ms (514 modules)
+Validating coupon: lol10 Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 200 in 676ms
+Validating coupon: random123123 Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 0
+ POST /api/coupons/validate 404 in 389ms
+Validating coupon: afwgegqrd Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 0
+ POST /api/coupons/validate 404 in 340ms
+ GET /cart 200 in 206ms
+Validating coupon: wfefaewf Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 75,
+  code: 'wfefaewf',
+  discount_type: 'percent',
+  amount: '80.00',
+  minimum_amount: '0.00',
+  maximum_amount: '0.00',
+  usage_limit: null,
+  usage_count: 0,
+  date_expires: null
+}
+ POST /api/coupons/validate 400 in 422ms
+ GET /cart 200 in 96ms
+Validating coupon: wfefaewf Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 75,
+  code: 'wfefaewf',
+  discount_type: 'percent',
+  amount: '80.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: null,
+  usage_count: 0,
+  date_expires: null
+}
+ POST /api/coupons/validate 200 in 1294ms
+ GET /cart 200 in 99ms
+Validating coupon: wfefaewf Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 75,
+  code: 'wfefaewf',
+  discount_type: 'percent',
+  amount: '80.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: null,
+  usage_count: 0,
+  date_expires: '2025-07-09T00:00:00'
+}
+ POST /api/coupons/validate 400 in 495ms
+Validating coupon: wfefaewf Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 75,
+  code: 'wfefaewf',
+  discount_type: 'percent',
+  amount: '80.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: null,
+  usage_count: 0,
+  date_expires: '2025-07-09T00:00:00'
+}
+ POST /api/coupons/validate 400 in 593ms
+ ✓ Compiled /search in 468ms (882 modules)
+ GET /search?q=test+product+1 200 in 594ms
+ GET /cart 200 in 182ms
+Validating coupon: lol10 Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 200 in 453ms
