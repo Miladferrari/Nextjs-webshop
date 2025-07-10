@@ -37738,3 +37738,447 @@ FAILED: Usage limit exceeded
  GET /over-ons 200 in 100ms
  ✓ Compiled in 658ms (1242 modules)
  GET /over-ons 200 in 72ms
+ GET /contact 200 in 61ms
+ GET /contact 200 in 52ms
+ GET /faq 200 in 27ms
+ GET /over-ons 200 in 18ms
+[WooCommerce API] 2025-07-10T17:18:55.125Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+ GET /noodpakketten?category=speciale-dieetpakketten 200 in 618ms
+[WooCommerce API] 2025-07-10T17:18:58.380Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+ GET /noodpakketten?category=uitgebreide-pakketten 200 in 455ms
+[WooCommerce API] 2025-07-10T17:19:00.935Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+[WooCommerce API] 2025-07-10T17:19:01.456Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=15&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:19:01.971Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=17&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:19:02.483Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=19&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:19:02.991Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=16&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=16&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[WooCommerce API] 2025-07-10T17:19:03.392Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=18&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=18&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+ GET /noodpakketten 200 in 2907ms
+[WooCommerce API] 2025-07-10T17:19:04.050Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+ GET /noodpakketten?category=uitgebreide-pakketten 200 in 616ms
+[WooCommerce API] 2025-07-10T17:19:04.757Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+ GET /noodpakketten?category=speciale-dieetpakketten 200 in 525ms
+[WooCommerce API] 2025-07-10T17:19:05.534Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+ GET /noodpakketten?category=uitgebreide-pakketten 200 in 416ms
+[WooCommerce API] 2025-07-10T17:19:06.240Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+[WooCommerce API] 2025-07-10T17:19:06.619Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=15&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:19:07.004Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=17&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:19:07.351Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=19&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:19:07.909Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=16&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=16&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[WooCommerce API] 2025-07-10T17:19:08.317Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=18&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=18&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+ GET /noodpakketten 200 in 2520ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6.8s (1232 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 7645ms
+ GET /klantenservice 404 in 35ms
+ GET /klantenservice 404 in 95ms
+ ✓ Compiled /api/shipping in 364ms (621 modules)
+[Shipping] Calculating shipping for: { country: 'NL', postcode: undefined, cartTotal: 89, hasCoupon: false }
+[WooCommerce API] 2025-07-10T17:19:58.300Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[Shipping] Fetching allowed countries - no cache
+[WooCommerce API] 2025-07-10T17:19:58.303Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] 2025-07-10T17:19:58.985Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=false
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=100&orderby=count&order=desc&hide_empty=false&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[Shipping] Available zones: [
+  {
+    id: 0,
+    name: 'Locations not covered by your other zones',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 1,
+    name: 'Nederland & belgie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 6,
+    name: 'frankrijk',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  }
+]
+[WooCommerce API] 2025-07-10T17:19:59.077Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) locations: []
+[WooCommerce API] 2025-07-10T17:19:59.489Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[Shipping] Found zones: [
+  { id: 0, name: 'Locations not covered by your other zones' },
+  { id: 1, name: 'Nederland & belgie' },
+  { id: 6, name: 'frankrijk' }
+]
+[WooCommerce API] 2025-07-10T17:19:59.523Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 5 items
+[WooCommerce API] 2025-07-10T17:19:59.569Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=15&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) locations: [
+  {
+    code: 'NL',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  },
+  {
+    code: 'BE',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Found applicable zone: 1 (Nederland & belgie)
+[WooCommerce API] 2025-07-10T17:20:00.044Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/methods
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) countries: []
+[WooCommerce API] 2025-07-10T17:20:00.077Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:00.130Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=17&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) countries: [ 'NL', 'BE' ]
+[WooCommerce API] 2025-07-10T17:20:00.542Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/6/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/6/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Methods for zone 1: [
+  {
+    id: 1,
+    instance_id: 1,
+    title: 'Free shipping',
+    order: 1,
+    enabled: true,
+    method_id: 'free_shipping',
+    method_title: 'Free shipping',
+    method_description: '<p>Free shipping is a special method which can be triggered with coupons and minimum spends.</p>\n',
+    settings: {
+      title: [Object],
+      requires: [Object],
+      min_amount: [Object],
+      ignore_discounts: [Object]
+    },
+    _links: { self: [Array], collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Calculated rates: [
+  {
+    method_id: 'free_shipping:1',
+    method_title: 'Free shipping',
+    cost: 0,
+    free: true,
+    free_shipping_eligible: true,
+    free_shipping_remaining: 0,
+    free_shipping_requires: 'min_amount',
+    free_shipping_min_amount: 20
+  }
+]
+ GET /api/shipping?action=calculate&country=NL&total=89 200 in 2824ms
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 6 (frankrijk) countries: [ 'FR' ]
+[WooCommerce API] 2025-07-10T17:20:00.852Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:20:00.948Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=19&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Rest of the World locations: []
+[WooCommerce API] 2025-07-10T17:20:01.156Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/methods
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:20:01.362Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=16&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=16&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Total allowed countries: [ 'NL', 'BE', 'FR' ]
+ GET /api/shipping?action=countries 200 in 3786ms
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[WooCommerce API] 2025-07-10T17:20:01.792Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=18&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=18&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+ GET /noodpakketten 200 in 3330ms
+[Shipping] Fetching allowed countries - no cache
+[WooCommerce API] 2025-07-10T17:20:02.662Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[Shipping] Calculating shipping for: { country: 'NL', postcode: undefined, cartTotal: 89, hasCoupon: false }
+[WooCommerce API] 2025-07-10T17:20:02.678Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[Shipping] Available zones: [
+  {
+    id: 0,
+    name: 'Locations not covered by your other zones',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 1,
+    name: 'Nederland & belgie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 6,
+    name: 'frankrijk',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  }
+]
+[WooCommerce API] 2025-07-10T17:20:03.005Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[Shipping] Found zones: [
+  { id: 0, name: 'Locations not covered by your other zones' },
+  { id: 1, name: 'Nederland & belgie' },
+  { id: 6, name: 'frankrijk' }
+]
+[WooCommerce API] 2025-07-10T17:20:03.017Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) countries: []
+[WooCommerce API] 2025-07-10T17:20:03.510Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) locations: []
+[WooCommerce API] 2025-07-10T17:20:03.513Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) countries: [ 'NL', 'BE' ]
+[WooCommerce API] 2025-07-10T17:20:03.950Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/6/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/6/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) locations: [
+  {
+    code: 'NL',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  },
+  {
+    code: 'BE',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Found applicable zone: 1 (Nederland & belgie)
+[WooCommerce API] 2025-07-10T17:20:03.970Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/1/methods
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Methods for zone 1: [
+  {
+    id: 1,
+    instance_id: 1,
+    title: 'Free shipping',
+    order: 1,
+    enabled: true,
+    method_id: 'free_shipping',
+    method_title: 'Free shipping',
+    method_description: '<p>Free shipping is a special method which can be triggered with coupons and minimum spends.</p>\n',
+    settings: {
+      title: [Object],
+      requires: [Object],
+      min_amount: [Object],
+      ignore_discounts: [Object]
+    },
+    _links: { self: [Array], collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Calculated rates: [
+  {
+    method_id: 'free_shipping:1',
+    method_title: 'Free shipping',
+    cost: 0,
+    free: true,
+    free_shipping_eligible: true,
+    free_shipping_remaining: 0,
+    free_shipping_requires: 'min_amount',
+    free_shipping_min_amount: 20
+  }
+]
+ GET /api/shipping?action=calculate&country=NL&total=89 200 in 1722ms
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 6 (frankrijk) countries: [ 'FR' ]
+[WooCommerce API] 2025-07-10T17:20:04.484Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Rest of the World locations: []
+[WooCommerce API] 2025-07-10T17:20:05.061Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: shipping/zones/0/methods
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Total allowed countries: [ 'NL', 'BE', 'FR' ]
+ GET /api/shipping?action=countries 200 in 2803ms
+ ✓ Compiled in 5.1s (1259 modules)
+[WooCommerce API] 2025-07-10T17:20:19.062Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?per_page=3&page=1&orderby=popularity&order=desc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] 2025-07-10T17:20:19.126Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?per_page=3&page=1&orderby=popularity&order=desc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:19.130Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=10&orderby=count&order=desc&hide_empty=true&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:19.132Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=15&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:19.134Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=17&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:20:19.134Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=19&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 57ms
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:19.604Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products/categories?per_page=10&orderby=count&order=desc&hide_empty=true&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:20.107Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=15&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] 2025-07-10T17:20:20.615Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=17&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] 2025-07-10T17:20:21.022Z - Fetching fresh data (no cache)
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc&status=publish
+[WooCommerce API] Full URL: https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/products?category=19&per_page=100&orderby=price&order=asc&status=publish&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=HIDDEN
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 2439ms

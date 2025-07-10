@@ -35,14 +35,6 @@ const Header = memo(function Header() {
       name: 'Alle noodpakketten', 
       href: '/noodpakketten'
     },
-    { 
-      name: 'Uitgebreide pakketten', 
-      href: '/noodpakketten?category=uitgebreide-pakketten'
-    },
-    { 
-      name: 'Speciale pakketten', 
-      href: '/noodpakketten?category=speciale-dieetpakketten'
-    },
     { name: 'Over ons', href: '/over-ons' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
