@@ -26,7 +26,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       per_page: 100,
       orderby: 'count',
       order: 'desc',
-      hide_empty: true
+      hide_empty: false  // Show all categories
     });
     
     // If a category is selected, find it and fetch its products
@@ -34,11 +34,15 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       selectedCategory = categories.find(cat => cat.slug === selectedCategorySlug) || null;
       
       if (selectedCategory) {
-        categoryProducts = await woocommerce.getProductsByCategory(selectedCategory.id, {
-          per_page: 100,
-          orderby: 'menu_order',
-          order: 'asc'
-        });
+        try {
+          categoryProducts = await woocommerce.getProductsByCategory(selectedCategory.id, {
+            per_page: 100,
+            orderby: 'menu_order',
+            order: 'asc'
+          });
+        } catch (error) {
+          console.error('[Collection Page] Error fetching products:', error);
+        }
       }
     } else {
       // Fetch lowest price for each category only when showing all categories

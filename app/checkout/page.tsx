@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useCart } from '../contexts/CartContext';
-import { woocommerce } from '@/lib/woocommerce';
 import CouponInput from '../components/CouponInput';
 
 export default function CheckoutPage() {
@@ -140,7 +139,23 @@ export default function CheckoutPage() {
         return;
       }
 
+      // Prepare shipping lines based on selected shipping method
+      const shippingLines = [];
+      const selectedRate = shipping.selectedRate || shipping.rates[0];
+      if (selectedRate) {
+        // WooCommerce expects the full method_id (e.g., 'flat_rate:1')
+        shippingLines.push({
+          method_id: selectedRate.method_id,
+          method_title: selectedRate.method_title,
+          total: selectedRate.cost.toFixed(2)
+        });
+      }
+
       const orderData = {
+        payment_method: 'woocommerce_payments',
+        payment_method_title: 'Card',
+        set_paid: false,
+        status: 'pending',
         billing: {
           first_name: formData.firstName,
           last_name: formData.lastName,
@@ -165,6 +180,7 @@ export default function CheckoutPage() {
           product_id: item.product.id,
           quantity: item.quantity,
         })),
+        shipping_lines: shippingLines,
         ...(appliedCoupon && {
           coupon_lines: [{
             code: appliedCoupon.code
@@ -172,14 +188,54 @@ export default function CheckoutPage() {
         })
       };
 
-      const order = await woocommerce.createOrder(orderData);
+      // Create return URL for after payment
+      const returnUrl = `${window.location.origin}/checkout/success`;
       
-      // Clear cart and redirect to success page
+      // Create order via API route to avoid CORS issues
+      const orderResponse = await fetch('/api/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderData: orderData,
+          returnUrl: returnUrl
+        }),
+      });
+
+      const result = await orderResponse.json();
+      
+      if (!result.success || !result.order || !result.order.id) {
+        throw new Error(result.error || 'Failed to create order');
+      }
+
+      console.log('Order created successfully with ID:', result.order.id);
+      console.log('Redirecting to payment URL:', result.paymentUrl);
+      
+      // Store order ID in session storage for later retrieval
+      sessionStorage.setItem('pendingOrderId', result.order.id.toString());
+      
+      // Clear cart - it will be restored if payment fails
       clearCart();
-      router.push(`/checkout/success?order=${order.id}`);
-    } catch (err) {
-      setError('Bestelling mislukt. Probeer het opnieuw.');
+      
+      // Redirect to WooCommerce payment page
+      window.location.href = result.paymentUrl;
+    } catch (err: any) {
       console.error('Order error:', err);
+      
+      // Provide more specific error messages
+      if (err.message?.includes('stock') || err.message?.includes('voorraad')) {
+        setError('Een of meer producten zijn niet meer op voorraad. Controleer je winkelwagen.');
+      } else if (err.message?.includes('coupon') || err.message?.includes('korting')) {
+        setError('De kortingscode is niet meer geldig. Probeer het opnieuw zonder kortingscode.');
+      } else if (err.message?.includes('shipping')) {
+        setError('Er is een probleem met de verzendmethode. Selecteer een andere verzendoptie.');
+      } else {
+        setError('Er is een fout opgetreden bij het verwerken van je bestelling. Probeer het opnieuw of neem contact met ons op.');
+      }
+      
+      // Scroll to top to show error
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setLoading(false);
     }

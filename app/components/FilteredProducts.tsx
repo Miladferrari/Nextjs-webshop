@@ -21,7 +21,7 @@ export default function FilteredProducts({ products, categoryName }: FilteredPro
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({
     priceRange: [],
-    availability: ['instock'], // Default to show in-stock items
+    availability: [], // Show all products by default (both in-stock and out-of-stock)
     packageSize: [],
     duration: [],
     sortBy: 'recommended'
@@ -134,7 +134,7 @@ export default function FilteredProducts({ products, categoryName }: FilteredPro
   const clearFilters = () => {
     setFilters({
       priceRange: [],
-      availability: ['instock'],
+      availability: [], // Clear all filters, show all products
       packageSize: [],
       duration: [],
       sortBy: 'recommended'

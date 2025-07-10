@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { woocommerce } from '@/lib/woocommerce';
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get('q');
-    
-    if (!query) {
+    const query = searchParams.get('q') || '';
+    const page = parseInt(searchParams.get('page') || '1');
+    const perPage = parseInt(searchParams.get('per_page') || '12');
+
+    if (!query.trim()) {
       return NextResponse.json({ products: [] });
     }
 
-    // Search products using WooCommerce API
     const products = await woocommerce.searchProducts(query, {
-      per_page: 20,
-      page: 1
+      page,
+      per_page: perPage
     });
 
     return NextResponse.json({ products });

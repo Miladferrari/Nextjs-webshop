@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
-import { woocommerce, type Product } from '@/lib/woocommerce';
+import { type Product } from '@/lib/woocommerce';
 
 function SearchResults() {
   const searchParams = useSearchParams();
@@ -29,10 +29,14 @@ function SearchResults() {
 
       try {
         console.log(`[Search] Searching for: "${query}" (page ${page})`);
-        const results = await woocommerce.searchProducts(query, {
-          per_page: 12,
-          page: page
-        });
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&page=${page}&per_page=12`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch search results');
+        }
+        
+        const data = await response.json();
+        const results = data.products || [];
         
         if (page === 1) {
           setProducts(results);

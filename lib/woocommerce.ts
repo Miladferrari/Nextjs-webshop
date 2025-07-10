@@ -151,36 +151,55 @@ class WooCommerceAPI {
     const fullUrl = `${url.toString()}${authParams}`;
 
     console.log(`[WooCommerce API] Fetching: ${endpoint}`);
+    console.log(`[WooCommerce API] Full URL: ${fullUrl.replace(this.config.consumerSecret, 'HIDDEN')}`);
 
-    const response = await fetch(fullUrl, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        ...options?.headers,
-      },
-      // Next.js specific caching - DISABLED for real-time updates
-      next: { 
-        revalidate: 0 // Always fetch fresh data
-      },
-      cache: 'no-store' // Disable Next.js caching
-    });
+    try {
+      const response = await fetch(fullUrl, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          ...options?.headers,
+        },
+        mode: 'cors',
+        credentials: 'omit', // Don't send cookies with API requests
+        // Next.js specific caching - DISABLED for real-time updates
+        next: { 
+          revalidate: 0 // Always fetch fresh data
+        },
+        cache: 'no-store' // Disable Next.js caching
+      });
 
-    console.log(`[WooCommerce API] Response status: ${response.status}`);
+      console.log(`[WooCommerce API] Response status: ${response.status}`);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`[WooCommerce API] Error: ${response.status} ${response.statusText}`, errorText);
-      throw new Error(`WooCommerce API error: ${response.status} ${response.statusText}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`[WooCommerce API] Error: ${response.status} ${response.statusText}`, errorText);
+        
+        // Try to parse error details
+        let errorDetails = '';
+        try {
+          const errorJson = JSON.parse(errorText);
+          errorDetails = errorJson.message || errorJson.error || errorText;
+        } catch {
+          errorDetails = errorText;
+        }
+        
+        throw new Error(`WooCommerce API error: ${response.status} ${response.statusText} - ${errorDetails}`);
+      }
+
+      const data = await response.json();
+      console.log(`[WooCommerce API] Success: Found ${Array.isArray(data) ? data.length : 1} items`);
+
+      // Caching disabled - don't store response
+
+      return data;
+    } catch (error) {
+      console.error(`[WooCommerce API] Fetch error:`, error);
+      throw error;
     }
-
-    const data = await response.json();
-    console.log(`[WooCommerce API] Success: Found ${Array.isArray(data) ? data.length : 1} items`);
-
-    // Caching disabled - don't store response
-
-    return data;
   }
 
   async getProducts(params?: {
@@ -199,6 +218,8 @@ class WooCommerceAPI {
     if (params?.order) queryParams.append('order', params.order);
     if (params?.category) queryParams.append('category', params.category);
     if (params?.include) queryParams.append('include', params.include.join(','));
+    // Only fetch published products - WooCommerce returns all stock statuses by default
+    queryParams.append('status', 'publish');
 
     const endpoint = `products${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
     return this.fetchAPI<Product[]>(endpoint);
@@ -242,6 +263,8 @@ class WooCommerceAPI {
     if (params?.page) queryParams.append('page', params.page.toString());
     if (params?.orderby) queryParams.append('orderby', params.orderby);
     if (params?.order) queryParams.append('order', params.order);
+    // Only fetch published products - WooCommerce returns all stock statuses by default
+    queryParams.append('status', 'publish');
 
     const endpoint = `products?${queryParams.toString()}`;
     return this.fetchAPI<Product[]>(endpoint);
@@ -256,18 +279,46 @@ class WooCommerceAPI {
     
     if (params?.per_page) queryParams.append('per_page', params.per_page.toString());
     if (params?.page) queryParams.append('page', params.page.toString());
+    // Only fetch published products - WooCommerce returns all stock statuses by default
+    queryParams.append('status', 'publish');
 
     const endpoint = `products?${queryParams.toString()}`;
     return this.fetchAPI<Product[]>(endpoint, { useCache: false, cache: 'no-store' }); // Don't cache search results
   }
 
   async createOrder(orderData: any): Promise<any> {
-    return this.fetchAPI('orders', {
-      method: 'POST',
-      body: JSON.stringify(orderData),
-      useCache: false,
-      cache: 'no-store'
-    });
+    console.log('[WooCommerce API] Creating order with data:', JSON.stringify(orderData, null, 2));
+    console.log('[WooCommerce API] API URL:', this.config.baseUrl);
+    console.log('[WooCommerce API] Using consumer key:', this.config.consumerKey.substring(0, 10) + '...');
+    
+    try {
+      const response = await this.fetchAPI('orders', {
+        method: 'POST',
+        body: JSON.stringify(orderData),
+        useCache: false,
+        cache: 'no-store'
+      });
+      
+      console.log('[WooCommerce API] Order created successfully:', response);
+      return response;
+    } catch (error: any) {
+      console.error('[WooCommerce API] Order creation failed:', error);
+      console.error('[WooCommerce API] Error details:', error.message);
+      throw error;
+    }
+  }
+
+  async getPaymentUrl(orderId: number, orderKey: string): Promise<string> {
+    // Generate the checkout payment URL for WooCommerce
+    const baseUrl = this.config.baseUrl.replace('/wp-json/wc/v3', '');
+    const paymentUrl = `${baseUrl}/checkout/order-pay/${orderId}/?pay_for_order=true&key=${orderKey}`;
+    
+    console.log('[WooCommerce API] Generated payment URL:', paymentUrl);
+    return paymentUrl;
+  }
+
+  async getOrder(orderId: number): Promise<any> {
+    return this.fetchAPI(`orders/${orderId}`);
   }
 
   async getCouponByCode(code: string): Promise<Coupon | null> {

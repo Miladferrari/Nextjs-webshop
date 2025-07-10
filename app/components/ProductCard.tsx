@@ -144,8 +144,9 @@ const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
         
         {isOutOfStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div className="bg-red-600 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-lg">
-              UITVERKOCHT
+            <div className="bg-orange-600 text-white px-4 py-3 rounded-lg font-bold shadow-lg text-center">
+              <div className="text-lg">Tijdelijk uitverkocht</div>
+              <div className="text-sm font-normal mt-1">Binnenkort weer beschikbaar</div>
             </div>
           </div>
         )}
@@ -273,11 +274,11 @@ const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
               <span>Op voorraad</span>
             </p>
           ) : (
-            <p className="flex items-center justify-start gap-1 text-sm text-red-500">
+            <p className="flex items-center justify-start gap-1 text-sm text-orange-600">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>Uitverkocht</span>
+              <span>Binnenkort beschikbaar</span>
             </p>
           )}
         </div>

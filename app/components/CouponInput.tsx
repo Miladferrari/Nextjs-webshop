@@ -22,18 +22,24 @@ export default function CouponInput({ variant = 'default', onSuccess }: CouponIn
     setIsValidating(true);
 
     try {
+      // Clear any previous error state
+      console.log('Applying coupon:', couponCode.trim());
+      
       const response = await fetch('/api/coupons/validate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
         },
         body: JSON.stringify({
           code: couponCode.trim(),
           cartTotal: getTotalPrice(),
         }),
+        cache: 'no-store',
       });
 
       const data = await response.json();
+      console.log('Coupon validation response:', data);
 
       if (data.valid && data.coupon) {
         applyDiscount(data.coupon);
@@ -41,6 +47,7 @@ export default function CouponInput({ variant = 'default', onSuccess }: CouponIn
         setShowInput(false);
         onSuccess?.();
       } else {
+        console.error('Coupon validation failed:', data.error);
         setError(data.error || 'Ongeldige kortingscode');
       }
     } catch (error) {
