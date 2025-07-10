@@ -7806,3 +7806,479 @@ Coupon details: {
  │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
  │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/5/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
  │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ GET /cart 200 in 180ms
+[Shipping] Fetching allowed countries - no cache
+[WooCommerce API] Fetching: shipping/zones
+[Shipping] Calculating shipping for: { country: 'NL', postcode: undefined, cartTotal: 32, hasCoupon: false }
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Available zones: [
+  {
+    id: 0,
+    name: 'Locations not covered by your other zones',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 1,
+    name: 'Nederland & belgie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 4,
+    name: 'Poland',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 5,
+    name: 'Italie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Found zones: [
+  { id: 0, name: 'Locations not covered by your other zones' },
+  { id: 1, name: 'Nederland & belgie' },
+  { id: 4, name: 'Poland' },
+  { id: 5, name: 'Italie' }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) countries: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) locations: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) countries: [ 'NL', 'BE' ]
+[WooCommerce API] Fetching: shipping/zones/4/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) locations: [
+  {
+    code: 'NL',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  },
+  {
+    code: 'BE',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Found applicable zone: 1 (Nederland & belgie)
+[WooCommerce API] Fetching: shipping/zones/1/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 4 (Poland) countries: [ 'PL' ]
+[WooCommerce API] Fetching: shipping/zones/5/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Methods for zone 1: [
+  {
+    id: 1,
+    instance_id: 1,
+    title: 'Free shipping',
+    order: 1,
+    enabled: true,
+    method_id: 'free_shipping',
+    method_title: 'Free shipping',
+    method_description: '<p>Free shipping is a special method which can be triggered with coupons and minimum spends.</p>\n',
+    settings: {
+      title: [Object],
+      requires: [Object],
+      min_amount: [Object],
+      ignore_discounts: [Object]
+    },
+    _links: { self: [Array], collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Calculated rates: [
+  {
+    method_id: 'free_shipping:1',
+    method_title: 'Free shipping',
+    cost: 0,
+    free: true,
+    free_shipping_eligible: true,
+    free_shipping_remaining: 0,
+    free_shipping_requires: 'min_amount',
+    free_shipping_min_amount: 20
+  }
+]
+ GET /api/shipping?action=calculate&country=NL&total=32 200 in 1951ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 5 (Italie) countries: [ 'IT' ]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Rest of the World locations: []
+[WooCommerce API] Fetching: shipping/zones/0/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Total allowed countries: [ 'NL', 'BE', 'PL', 'IT' ]
+ GET /api/shipping?action=countries 200 in 2787ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/4/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/5/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ ✓ Compiled /api/coupons/validate in 412ms (527 modules)
+Validating coupon: bdadwdawdwad Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 0
+ POST /api/coupons/validate 404 in 812ms
+ ✓ Compiled in 1126ms (896 modules)
+ GET /cart 200 in 391ms
+ ✓ Compiled in 665ms (896 modules)
+ GET /cart 200 in 79ms
+ ✓ Compiled in 508ms (896 modules)
+ GET /cart 200 in 51ms
+ ✓ Compiled in 1157ms (896 modules)
+ GET /cart 200 in 297ms
+ ✓ Compiled in 396ms (389 modules)
+ GET /cart 200 in 58ms
+ ✓ Compiled in 451ms (389 modules)
+ GET /cart 200 in 64ms
+ ✓ Compiled in 1838ms (896 modules)
+ GET /cart 200 in 95ms
+ GET /checkout 200 in 39ms
+ ✓ Compiled /api/shipping in 466ms (525 modules)
+[Shipping] Fetching allowed countries - no cache
+[WooCommerce API] Fetching: shipping/zones
+[Shipping] Calculating shipping for: { country: 'NL', postcode: undefined, cartTotal: 32, hasCoupon: false }
+[WooCommerce API] Fetching: shipping/zones
+[Shipping] Fetching allowed countries - no cache
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Available zones: [
+  {
+    id: 0,
+    name: 'Locations not covered by your other zones',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 1,
+    name: 'Nederland & belgie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 4,
+    name: 'Poland',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 5,
+    name: 'Italie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Found zones: [
+  { id: 0, name: 'Locations not covered by your other zones' },
+  { id: 1, name: 'Nederland & belgie' },
+  { id: 4, name: 'Poland' },
+  { id: 5, name: 'Italie' }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Found zones: [
+  { id: 0, name: 'Locations not covered by your other zones' },
+  { id: 1, name: 'Nederland & belgie' },
+  { id: 4, name: 'Poland' },
+  { id: 5, name: 'Italie' }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) countries: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) countries: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) locations: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) locations: [
+  {
+    code: 'NL',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  },
+  {
+    code: 'BE',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Found applicable zone: 1 (Nederland & belgie)
+[WooCommerce API] Fetching: shipping/zones/1/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) countries: [ 'NL', 'BE' ]
+[WooCommerce API] Fetching: shipping/zones/4/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) countries: [ 'NL', 'BE' ]
+[WooCommerce API] Fetching: shipping/zones/4/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 4 (Poland) countries: [ 'PL' ]
+[WooCommerce API] Fetching: shipping/zones/5/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Methods for zone 1: [
+  {
+    id: 1,
+    instance_id: 1,
+    title: 'Free shipping',
+    order: 1,
+    enabled: true,
+    method_id: 'free_shipping',
+    method_title: 'Free shipping',
+    method_description: '<p>Free shipping is a special method which can be triggered with coupons and minimum spends.</p>\n',
+    settings: {
+      title: [Object],
+      requires: [Object],
+      min_amount: [Object],
+      ignore_discounts: [Object]
+    },
+    _links: { self: [Array], collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Calculated rates: [
+  {
+    method_id: 'free_shipping:1',
+    method_title: 'Free shipping',
+    cost: 0,
+    free: true,
+    free_shipping_eligible: true,
+    free_shipping_remaining: 0,
+    free_shipping_requires: 'min_amount',
+    free_shipping_min_amount: 20
+  }
+]
+ GET /api/shipping?action=calculate&country=NL&total=32 200 in 2453ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 4 (Poland) countries: [ 'PL' ]
+[WooCommerce API] Fetching: shipping/zones/5/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 5 (Italie) countries: [ 'IT' ]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Zone 5 (Italie) countries: [ 'IT' ]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Rest of the World locations: []
+[WooCommerce API] Fetching: shipping/zones/0/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Rest of the World locations: []
+[WooCommerce API] Fetching: shipping/zones/0/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Total allowed countries: [ 'NL', 'BE', 'PL', 'IT' ]
+ GET /api/shipping?action=countries 200 in 3311ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/4/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/5/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Total allowed countries: [ 'NL', 'BE', 'PL', 'IT' ]
+ GET /api/shipping?action=countries 200 in 3312ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/4/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/5/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ ✓ Compiled /api/coupons/validate in 130ms (527 modules)
+Validating coupon: lol10 Cart total: 32
+Fetching from WooCommerce API...
+WooCommerce response status: 200
+Coupons found: 1
+Coupon details: {
+  id: 72,
+  code: 'lol10',
+  discount_type: 'percent',
+  amount: '20.00',
+  minimum_amount: '0.00',
+  maximum_amount: '10000.00',
+  usage_limit: 1,
+  usage_count: 0,
+  date_expires: '2025-10-31T00:00:00'
+}
+ POST /api/coupons/validate 200 in 508ms
+[WooCommerce API] Fetching: coupons?code=lol10
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Calculating shipping for: {
+  country: 'NL',
+  postcode: undefined,
+  cartTotal: 25.6,
+  hasCoupon: true
+}
+[WooCommerce API] Fetching: shipping/zones
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+[Shipping] Available zones: [
+  {
+    id: 0,
+    name: 'Locations not covered by your other zones',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 1,
+    name: 'Nederland & belgie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 4,
+    name: 'Poland',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  },
+  {
+    id: 5,
+    name: 'Italie',
+    order: 0,
+    _links: { self: [Array], collection: [Array], describedby: [Array] }
+  }
+]
+[WooCommerce API] Fetching: shipping/zones/0/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 0 items
+[Shipping] Zone 0 (Locations not covered by your other zones) locations: []
+[WooCommerce API] Fetching: shipping/zones/1/locations
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[Shipping] Zone 1 (Nederland & belgie) locations: [
+  {
+    code: 'NL',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  },
+  {
+    code: 'BE',
+    type: 'country',
+    _links: { collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Found applicable zone: 1 (Nederland & belgie)
+[WooCommerce API] Fetching: shipping/zones/1/methods
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[Shipping] Methods for zone 1: [
+  {
+    id: 1,
+    instance_id: 1,
+    title: 'Free shipping',
+    order: 1,
+    enabled: true,
+    method_id: 'free_shipping',
+    method_title: 'Free shipping',
+    method_description: '<p>Free shipping is a special method which can be triggered with coupons and minimum spends.</p>\n',
+    settings: {
+      title: [Object],
+      requires: [Object],
+      min_amount: [Object],
+      ignore_discounts: [Object]
+    },
+    _links: { self: [Array], collection: [Array], describes: [Array] }
+  }
+]
+[Shipping] Calculated rates: [
+  {
+    method_id: 'free_shipping:1',
+    method_title: 'Free shipping',
+    cost: 0,
+    free: true,
+    free_shipping_eligible: true,
+    free_shipping_remaining: 0,
+    free_shipping_requires: 'min_amount',
+    free_shipping_min_amount: 20
+  }
+]
+ GET /api/shipping?action=calculate&country=NL&total=25.6&coupon=lol10 200 in 1612ms
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/coupons?code=lol10&consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/0/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/locations?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.
+ │ GET https://wordpress.restaurantmahzen.nl/wp-json/wc/v3/shipping/zones/1/methods?consumer_key=ck_6611c9935688b973c536fc2633565cdb1dda0262&consumer_secret=cs_b4b55890e3a947bb72305f80e304690e835820e0
+ │ │ ⚠ Specified "cache: no-store" and "revalidate: 300", only one should be specified.

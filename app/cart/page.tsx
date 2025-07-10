@@ -359,11 +359,6 @@ export default function CartPage() {
                     <span className="text-gray-700">Verzending</span>
                     <span className="text-sm text-gray-500 italic">wordt berekend bij checkout</span>
                   </div>
-                  
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700">BTW (21%)</span>
-                    <span className="text-gray-900">€{(getTotalPriceAfterDiscount() * 0.21).toFixed(2)}</span>
-                  </div>
                 </div>
                 
                 <div className="border-t pt-4 mb-6">
@@ -371,12 +366,9 @@ export default function CartPage() {
                     <span className="text-xl font-bold text-navy-blue">Totaal</span>
                     <div className="text-right">
                       <span className="text-2xl font-bold text-medical-green">
-                        €{(
-                          getTotalPriceAfterDiscount() + 
-                          (getTotalPriceAfterDiscount() * 0.21)
-                        ).toFixed(2)}
+                        €{getTotalPriceAfterDiscount().toFixed(2)}
                       </span>
-                      <p className="text-xs text-steel-gray">Incl. BTW, excl. verzending</p>
+                      <p className="text-xs text-steel-gray">Excl. verzending</p>
                     </div>
                   </div>
                 </div>

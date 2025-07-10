@@ -172,7 +172,7 @@ const Footer = memo(function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-300 text-center md:text-left">
-              Alle prijzen op onze website zijn incl. BTW en excl. eventuele verzendkosten.
+              Alle prijzen op onze website zijn excl. eventuele verzendkosten.
             </p>
             <div className="flex items-center gap-6 text-sm">
               <Link href="/privacy" className="text-gray-300 hover:text-medical-green transition-colors">

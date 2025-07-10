@@ -95,9 +95,7 @@ export default function CheckoutPage() {
   const discountAmount = getDiscountAmount();
   const subtotalAfterDiscount = getTotalPriceAfterDiscount();
   const shippingCost = getShippingCost();
-  const vatRate = 0.21; // 21% VAT
-  const vatAmount = (subtotalAfterDiscount + shippingCost) * vatRate;
-  const total = getFinalTotal() + vatAmount;
+  const total = getFinalTotal(); // Total without VAT since prices already include VAT
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -327,10 +325,6 @@ export default function CheckoutPage() {
                   return null;
                 })()}
                 
-                <div className="flex justify-between text-sm">
-                  <span className="text-steel-gray">BTW (21%)</span>
-                  <span className="text-gray-900">€{vatAmount.toFixed(2)}</span>
-                </div>
                 <div className="flex justify-between font-semibold text-lg pt-2 border-t">
                   <span className="text-gray-900">Totaal</span>
                   <span className="text-amber-orange">€{total.toFixed(2)}</span>
@@ -771,10 +765,6 @@ export default function CheckoutPage() {
                   }
                   return null;
                 })()}
-                <div className="flex justify-between text-sm">
-                  <span className="text-steel-gray">BTW (21%)</span>
-                  <span className="text-gray-900">€{vatAmount.toFixed(2)}</span>
-                </div>
                 <div className="flex justify-between font-semibold text-lg pt-2 border-t">
                   <span className="text-gray-900">Totaal</span>
                   <span className="text-amber-orange">€{total.toFixed(2)}</span>

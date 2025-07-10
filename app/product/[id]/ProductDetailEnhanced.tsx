@@ -478,7 +478,7 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                   </span>
                 )}
               </div>
-              <p className="text-sm text-steel-gray mb-3">Incl. BTW • Gratis verzending</p>
+              <p className="text-sm text-steel-gray mb-3">Gratis verzending</p>
               
               {/* Limited time offer */}
               {isOnSale && (

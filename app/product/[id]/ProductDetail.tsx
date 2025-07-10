@@ -329,7 +329,7 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                   </span>
                 )}
               </div>
-              <p className="text-sm text-steel-gray">Incl. BTW, excl. verzendkosten</p>
+              <p className="text-sm text-steel-gray">Excl. verzendkosten</p>
               
               {/* Urgency: Limited time offer */}
               {isOnSale && (
