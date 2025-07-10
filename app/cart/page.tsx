@@ -1,20 +1,23 @@
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '../contexts/CartContext';
-import { useState } from 'react';
 import CouponInput from '../components/CouponInput';
 
 export default function CartPage() {
-  const { items, removeFromCart, updateQuantity, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, appliedCoupon } = useCart();
+  const { 
+    items, 
+    removeFromCart, 
+    updateQuantity, 
+    getTotalPrice, 
+    getTotalPriceAfterDiscount, 
+    getDiscountAmount, 
+    appliedCoupon,
+    shipping
+  } = useCart();
   const [removingItems, setRemovingItems] = useState<number[]>([]);
-
-  // Calculate shipping threshold
-  const shippingThreshold = 50;
-  const discountedTotal = getTotalPriceAfterDiscount();
-  const remainingForFreeShipping = Math.max(0, shippingThreshold - discountedTotal);
-  const progressPercentage = Math.min((discountedTotal / shippingThreshold) * 100, 100);
 
   const handleRemoveItem = (productId: number) => {
     setRemovingItems(prev => [...prev, productId]);
@@ -127,28 +130,6 @@ export default function CartPage() {
           {items.length} {items.length === 1 ? 'product' : 'producten'} in uw winkelwagen
         </p>
 
-        {/* Free shipping progress */}
-        {getTotalPrice() < shippingThreshold && (
-          <div className="bg-white rounded-xl shadow-sm p-4 mb-6 max-w-2xl mx-auto">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                </svg>
-                <span className="text-sm font-medium text-navy-blue">
-                  Nog €{remainingForFreeShipping.toFixed(2)} voor gratis verzending!
-                </span>
-              </div>
-              <span className="text-xs text-steel-gray">Gratis vanaf €50</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className="bg-medical-green h-2 rounded-full transition-all duration-300"
-                style={{ width: `${progressPercentage}%` }}
-              />
-            </div>
-          </div>
-        )}
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart items */}
@@ -286,6 +267,71 @@ export default function CartPage() {
             <div className="mt-6">
               <CouponInput />
             </div>
+            
+            {/* Free shipping progress */}
+            {shipping.rates.length > 0 && (() => {
+              const freeShippingRate = shipping.rates.find(r => r.method_id.includes('free_shipping'));
+              const flatRate = shipping.rates.find(r => r.method_id.includes('flat_rate'));
+              const currentRate = freeShippingRate || flatRate || shipping.rates[0];
+              
+              if (currentRate?.free_shipping_remaining && currentRate.free_shipping_remaining > 0) {
+                const progressPercentage = Math.min(
+                  (getTotalPriceAfterDiscount() / (getTotalPriceAfterDiscount() + currentRate.free_shipping_remaining)) * 100,
+                  100
+                );
+                
+                return (
+                  <div className="mt-6 bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div className="p-6 bg-gradient-to-r from-amber-orange/10 to-amber-orange/5">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 bg-amber-orange/20 rounded-full flex items-center justify-center">
+                            <svg className="w-6 h-6 text-amber-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-navy-blue">Gratis verzending</h3>
+                            <p className="text-sm text-amber-orange font-medium">
+                              Nog €{currentRate.free_shipping_remaining.toFixed(2)} tot gratis verzending!
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-amber-orange">{Math.round(progressPercentage)}%</p>
+                          <p className="text-xs text-steel-gray">van het doel</p>
+                        </div>
+                      </div>
+                      <div className="w-full bg-amber-200 rounded-full h-3">
+                        <div 
+                          className="bg-gradient-to-r from-amber-orange to-amber-600 h-3 rounded-full transition-all duration-300"
+                          style={{ width: `${progressPercentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              } else if (currentRate?.free && currentRate?.free_shipping_eligible) {
+                return (
+                  <div className="mt-6 bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div className="p-6 bg-gradient-to-r from-medical-green/10 to-medical-green/5 border border-medical-green/20">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-medical-green/20 rounded-full flex items-center justify-center">
+                          <svg className="w-6 h-6 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-navy-blue text-lg">🎉 Je komt in aanmerking voor gratis verzending!</h3>
+                          <p className="text-sm text-steel-gray">Je hebt de gratis verzenddrempel bereikt</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return null;
+            })()}
           </div>
           
           {/* Order summary */}
@@ -311,12 +357,9 @@ export default function CartPage() {
                   )}
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">Verzending</span>
-                    {getTotalPriceAfterDiscount() >= shippingThreshold ? (
-                      <span className="text-medical-green font-semibold">Gratis</span>
-                    ) : (
-                      <span className="text-gray-900">€4,95</span>
-                    )}
+                    <span className="text-sm text-gray-500 italic">wordt berekend bij checkout</span>
                   </div>
+                  
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">BTW (21%)</span>
                     <span className="text-gray-900">€{(getTotalPriceAfterDiscount() * 0.21).toFixed(2)}</span>
@@ -330,10 +373,10 @@ export default function CartPage() {
                       <span className="text-2xl font-bold text-medical-green">
                         €{(
                           getTotalPriceAfterDiscount() + 
-                          (getTotalPriceAfterDiscount() < shippingThreshold ? 4.95 : 0)
+                          (getTotalPriceAfterDiscount() * 0.21)
                         ).toFixed(2)}
                       </span>
-                      <p className="text-xs text-steel-gray">Incl. BTW</p>
+                      <p className="text-xs text-steel-gray">Incl. BTW, excl. verzending</p>
                     </div>
                   </div>
                 </div>

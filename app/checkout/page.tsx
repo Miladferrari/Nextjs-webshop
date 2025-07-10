@@ -9,10 +9,25 @@ import CouponInput from '../components/CouponInput';
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, appliedCoupon, clearCart } = useCart();
+  const { 
+    items, 
+    getTotalPrice, 
+    getTotalPriceAfterDiscount, 
+    getDiscountAmount, 
+    appliedCoupon, 
+    clearCart,
+    shipping,
+    setShippingCountry,
+    setShippingPostcode,
+    setSelectedShippingRate,
+    getShippingCost,
+    getFinalTotal,
+    allowedCountries
+  } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showOrderSummary, setShowOrderSummary] = useState(false);
+  const [countryNames, setCountryNames] = useState<{ [key: string]: string }>({});
   
   const [formData, setFormData] = useState({
     firstName: '',
@@ -26,22 +41,63 @@ export default function CheckoutPage() {
     country: 'NL',
   });
 
-  // Shipping rates by country
-  const shippingRates: { [key: string]: number } = {
-    'NL': 0, // Free shipping in Netherlands
-    'BE': 4.95,
-    'DE': 6.95,
-    'FR': 8.95,
-  };
+  // Country names mapping
+  useEffect(() => {
+    // Extended country codes to names mapping
+    const names: { [key: string]: string } = {
+      'NL': 'Nederland',
+      'BE': 'België',
+      'DE': 'Duitsland',
+      'FR': 'Frankrijk',
+      'LU': 'Luxemburg',
+      'AT': 'Oostenrijk',
+      'ES': 'Spanje',
+      'IT': 'Italië',
+      'GB': 'Verenigd Koninkrijk',
+      'US': 'Verenigde Staten',
+      'PL': 'Polen',
+      'CZ': 'Tsjechië',
+      'SK': 'Slowakije',
+      'HU': 'Hongarije',
+      'RO': 'Roemenië',
+      'BG': 'Bulgarije',
+      'GR': 'Griekenland',
+      'PT': 'Portugal',
+      'SE': 'Zweden',
+      'DK': 'Denemarken',
+      'NO': 'Noorwegen',
+      'FI': 'Finland',
+      'IE': 'Ierland',
+      'CH': 'Zwitserland',
+      'CA': 'Canada',
+      'AU': 'Australië',
+      'NZ': 'Nieuw-Zeeland',
+    };
+    setCountryNames(names);
+  }, []);
+
+  // Update shipping country when form country changes
+  useEffect(() => {
+    if (formData.country && formData.country !== shipping.country) {
+      setShippingCountry(formData.country);
+    }
+  }, [formData.country]);
+
+  // Update shipping postcode when form postcode changes
+  useEffect(() => {
+    if (formData.postcode && formData.postcode !== shipping.postcode) {
+      setShippingPostcode(formData.postcode);
+    }
+  }, [formData.postcode]);
 
   // Calculate pricing details
   const subtotal = getTotalPrice();
   const discountAmount = getDiscountAmount();
   const subtotalAfterDiscount = getTotalPriceAfterDiscount();
-  const shippingCost = shippingRates[formData.country] || 0;
+  const shippingCost = getShippingCost();
   const vatRate = 0.21; // 21% VAT
   const vatAmount = (subtotalAfterDiscount + shippingCost) * vatRate;
-  const total = subtotalAfterDiscount + shippingCost + vatAmount;
+  const total = getFinalTotal() + vatAmount;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -205,14 +261,72 @@ export default function CheckoutPage() {
                 
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">
-                    Verzending naar {formData.country === 'NL' ? 'Nederland' : 
-                               formData.country === 'BE' ? 'België' :
-                               formData.country === 'DE' ? 'Duitsland' : 'Frankrijk'}
+                    Verzending naar {countryNames[formData.country] || formData.country}
                   </span>
-                  <span className={shippingCost === 0 ? 'text-green-600 font-medium' : ''}>
-                    {shippingCost === 0 ? 'GRATIS' : `€${shippingCost.toFixed(2)}`}
-                  </span>
+                  {shipping.loading ? (
+                    <span className="text-gray-400">Berekenen...</span>
+                  ) : (
+                    <span className={shippingCost === 0 ? 'text-green-600 font-medium' : 'text-gray-900'}>
+                      {shippingCost === 0 ? 'GRATIS' : `€${shippingCost.toFixed(2)}`}
+                    </span>
+                  )}
                 </div>
+                
+                {/* Shipping error message - Mobile */}
+                {shipping.error && (
+                  <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
+                    <p className="text-xs text-red-600 flex items-center gap-1">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {shipping.error}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Free shipping progress or notice - Mobile */}
+                {(() => {
+                  const currentRate = shipping.selectedRate || shipping.rates[0];
+                  
+                  if (currentRate?.free_shipping_remaining && currentRate.free_shipping_remaining > 0) {
+                    const progressPercentage = Math.min(
+                      (subtotalAfterDiscount / (subtotalAfterDiscount + currentRate.free_shipping_remaining)) * 100,
+                      100
+                    );
+                    
+                    return (
+                      <div className="my-2 p-2 bg-amber-50 rounded border border-amber-200">
+                        <div className="flex items-center gap-2 mb-1">
+                          <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                          <span className="text-xs font-medium text-amber-800">
+                            Nog €{currentRate.free_shipping_remaining.toFixed(2)} tot gratis verzending!
+                          </span>
+                        </div>
+                        <div className="w-full bg-amber-200 rounded-full h-1">
+                          <div 
+                            className="bg-amber-600 h-1 rounded-full transition-all duration-300"
+                            style={{ width: `${progressPercentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  } else if (currentRate?.free && currentRate?.free_shipping_eligible) {
+                    return (
+                      <div className="my-2 p-2 bg-green-50 rounded-lg border border-green-200 flex items-center gap-2">
+                        <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-xs font-medium text-green-800">
+                          🎉 Je komt in aanmerking voor gratis verzending!
+                        </span>
+                      </div>
+                    );
+                  }
+                  return null;
+                })()}
+                
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">BTW (21%)</span>
                   <span className="text-gray-900">€{vatAmount.toFixed(2)}</span>
@@ -309,7 +423,7 @@ export default function CheckoutPage() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -323,7 +437,7 @@ export default function CheckoutPage() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -337,7 +451,7 @@ export default function CheckoutPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -350,7 +464,7 @@ export default function CheckoutPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -365,7 +479,7 @@ export default function CheckoutPage() {
                     onChange={handleInputChange}
                     required
                     placeholder="Huisnummer en straatnaam"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -378,7 +492,7 @@ export default function CheckoutPage() {
                     name="address2"
                     value={formData.address2}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -392,7 +506,7 @@ export default function CheckoutPage() {
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -406,7 +520,7 @@ export default function CheckoutPage() {
                     value={formData.postcode}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   />
                 </div>
                 
@@ -419,13 +533,27 @@ export default function CheckoutPage() {
                     value={formData.country}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                   >
-                    <option value="NL">Nederland</option>
-                    <option value="BE">België</option>
-                    <option value="DE">Duitsland</option>
-                    <option value="FR">Frankrijk</option>
+                    {allowedCountries.length === 0 ? (
+                      // Fallback to common countries if API hasn't loaded
+                      <>
+                        <option value="NL">Nederland</option>
+                        <option value="BE">België</option>
+                      </>
+                    ) : (
+                      allowedCountries.map(code => (
+                        <option key={code} value={code}>
+                          {countryNames[code] || code}
+                        </option>
+                      ))
+                    )}
                   </select>
+                  {!allowedCountries.includes(formData.country) && allowedCountries.length > 0 && (
+                    <p className="mt-1 text-sm text-red-600">
+                      We verzenden momenteel alleen naar geselecteerde landen.
+                    </p>
+                  )}
                 </div>
               </div>
               
@@ -444,7 +572,7 @@ export default function CheckoutPage() {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !!shipping.error}
                 className="w-full mt-6 bg-amber-orange text-white py-4 px-6 rounded-md font-semibold hover:bg-amber-orange/90 transition-all transform hover:scale-[1.02] disabled:bg-gray-300 disabled:transform-none flex items-center justify-center"
               >
                 {loading ? (
@@ -556,14 +684,93 @@ export default function CheckoutPage() {
                 
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">
-                    Verzending naar {formData.country === 'NL' ? 'Nederland' : 
-                               formData.country === 'BE' ? 'België' :
-                               formData.country === 'DE' ? 'Duitsland' : 'Frankrijk'}
+                    Verzending naar {countryNames[formData.country] || formData.country}
                   </span>
-                  <span className={shippingCost === 0 ? 'text-green-600 font-medium' : ''}>
-                    {shippingCost === 0 ? 'GRATIS' : `€${shippingCost.toFixed(2)}`}
-                  </span>
+                  {shipping.loading ? (
+                    <span className="text-gray-400">Berekenen...</span>
+                  ) : (
+                    <span className={shippingCost === 0 ? 'text-green-600 font-medium' : 'text-gray-900'}>
+                      {shippingCost === 0 ? 'GRATIS' : `€${shippingCost.toFixed(2)}`}
+                    </span>
+                  )}
                 </div>
+                
+                {/* Shipping error message */}
+                {shipping.error && (
+                  <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
+                    <p className="text-xs text-red-600 flex items-center gap-1">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {shipping.error}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Shipping method selection if multiple options */}
+                {shipping.rates.length > 1 && (
+                  <div className="mt-2">
+                    <select
+                      value={shipping.selectedRate?.method_id || ''}
+                      onChange={(e) => {
+                        const rate = shipping.rates.find(r => r.method_id === e.target.value);
+                        if (rate) setSelectedShippingRate(rate);
+                      }}
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-md text-gray-900"
+                    >
+                      {shipping.rates.map(rate => (
+                        <option key={rate.method_id} value={rate.method_id}>
+                          {rate.method_title} - {rate.free ? 'Gratis' : `€${rate.cost.toFixed(2)}`}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                
+                {/* Free shipping progress or notice */}
+                {(() => {
+                  const currentRate = shipping.selectedRate || shipping.rates[0];
+                  
+                  if (currentRate?.free_shipping_remaining && currentRate.free_shipping_remaining > 0) {
+                    const progressPercentage = Math.min(
+                      (subtotalAfterDiscount / (subtotalAfterDiscount + currentRate.free_shipping_remaining)) * 100,
+                      100
+                    );
+                    
+                    return (
+                      <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span className="text-xs font-medium text-amber-800">
+                              Nog €{currentRate.free_shipping_remaining.toFixed(2)} tot gratis verzending!
+                            </span>
+                          </div>
+                        </div>
+                        <div className="w-full bg-amber-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-amber-600 h-1.5 rounded-full transition-all duration-300"
+                            style={{ width: `${progressPercentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  } else if (currentRate?.free && currentRate?.free_shipping_eligible) {
+                    return (
+                      <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200 flex items-center gap-2">
+                        <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm font-medium text-green-800">
+                          🎉 Je komt in aanmerking voor gratis verzending!
+                        </span>
+                      </div>
+                    );
+                  }
+                  return null;
+                })()}
                 <div className="flex justify-between text-sm">
                   <span className="text-steel-gray">BTW (21%)</span>
                   <span className="text-gray-900">€{vatAmount.toFixed(2)}</span>

@@ -1,11 +1,20 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product, Coupon } from '@/lib/woocommerce';
+import { Product, Coupon, ShippingRate } from '@/lib/woocommerce';
 
 interface CartItem {
   product: Product;
   quantity: number;
+}
+
+interface ShippingInfo {
+  country: string;
+  postcode: string;
+  rates: ShippingRate[];
+  selectedRate: ShippingRate | null;
+  loading: boolean;
+  error: string | null;
 }
 
 interface CartContextType {
@@ -23,6 +32,14 @@ interface CartContextType {
   removeDiscount: () => void;
   getDiscountAmount: () => number;
   getTotalPriceAfterDiscount: () => number;
+  shipping: ShippingInfo;
+  setShippingCountry: (country: string) => Promise<void>;
+  setShippingPostcode: (postcode: string) => Promise<void>;
+  setSelectedShippingRate: (rate: ShippingRate) => void;
+  getShippingCost: () => number;
+  getFinalTotal: () => number;
+  allowedCountries: string[];
+  loadAllowedCountries: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -32,6 +49,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState<any | null>(null);
+  const [allowedCountries, setAllowedCountries] = useState<string[]>([]);
+  const [shipping, setShipping] = useState<ShippingInfo>({
+    country: 'NL', // Default to Netherlands
+    postcode: '',
+    rates: [],
+    selectedRate: null,
+    loading: false,
+    error: null
+  });
 
   // Load cart from localStorage on mount (client-side only)
   useEffect(() => {
@@ -148,6 +174,106 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return Math.max(0, subtotal - discount);
   };
 
+  // Load allowed countries
+  const loadAllowedCountries = async () => {
+    try {
+      const response = await fetch('/api/shipping?action=countries', {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
+      const data = await response.json();
+      if (data.countries) {
+        console.log('[Cart] Loaded allowed countries:', data.countries);
+        setAllowedCountries(data.countries);
+      }
+    } catch (error) {
+      console.error('Failed to load allowed countries:', error);
+    }
+  };
+
+  // Load allowed countries on mount
+  useEffect(() => {
+    loadAllowedCountries();
+  }, []);
+
+  // Set shipping country and calculate rates
+  const calculateShipping = async (country: string, postcode: string) => {
+    setShipping(prev => ({ ...prev, loading: true, error: null }));
+    
+    try {
+      const total = getTotalPriceAfterDiscount();
+      const couponParam = appliedCoupon ? `&coupon=${encodeURIComponent(appliedCoupon.code)}` : '';
+      const postcodeParam = postcode ? `&postcode=${encodeURIComponent(postcode)}` : '';
+      const response = await fetch(`/api/shipping?action=calculate&country=${country}&total=${total}${couponParam}${postcodeParam}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      });
+      const data = await response.json();
+      
+      if (data.rates && data.rates.length > 0) {
+        setShipping(prev => ({
+          ...prev,
+          rates: data.rates,
+          selectedRate: data.rates.length > 0 ? data.rates[0] : null,
+          loading: false,
+          error: null
+        }));
+      } else {
+        // No shipping methods available
+        setShipping(prev => ({
+          ...prev,
+          rates: [],
+          selectedRate: null,
+          loading: false,
+          error: 'Er zijn geen verzendmethodes beschikbaar voor dit adres. Controleer je postcode en land of neem contact met ons op.'
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to calculate shipping:', error);
+      setShipping(prev => ({ 
+        ...prev, 
+        loading: false,
+        error: 'Er is een fout opgetreden bij het berekenen van de verzendkosten.'
+      }));
+    }
+  };
+
+  const setShippingCountry = async (country: string) => {
+    setShipping(prev => ({ ...prev, country }));
+    // Refresh countries list to pick up any new zones
+    await loadAllowedCountries();
+    await calculateShipping(country, shipping.postcode);
+  };
+
+  const setShippingPostcode = async (postcode: string) => {
+    setShipping(prev => ({ ...prev, postcode }));
+    await calculateShipping(shipping.country, postcode);
+  };
+
+  // Update shipping rates when total or coupon changes
+  useEffect(() => {
+    if (shipping.country && isHydrated && items.length > 0) {
+      calculateShipping(shipping.country, shipping.postcode);
+    }
+  }, [items, appliedCoupon]);
+
+  const setSelectedShippingRate = (rate: ShippingRate) => {
+    setShipping(prev => ({ ...prev, selectedRate: rate }));
+  };
+
+  const getShippingCost = () => {
+    return shipping.selectedRate?.cost || 0;
+  };
+
+  const getFinalTotal = () => {
+    return getTotalPriceAfterDiscount() + getShippingCost();
+  };
+
   return (
     <CartContext.Provider value={{
       items,
@@ -163,7 +289,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       applyDiscount,
       removeDiscount,
       getDiscountAmount,
-      getTotalPriceAfterDiscount
+      getTotalPriceAfterDiscount,
+      shipping,
+      setShippingCountry,
+      setShippingPostcode,
+      setSelectedShippingRate,
+      getShippingCost,
+      getFinalTotal,
+      allowedCountries,
+      loadAllowedCountries
     }}>
       {children}
     </CartContext.Provider>

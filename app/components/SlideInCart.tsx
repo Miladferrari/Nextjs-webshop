@@ -8,7 +8,18 @@ import { useCart } from '../contexts/CartContext';
 import CouponInput from './CouponInput';
 
 export default function SlideInCart() {
-  const { items, removeFromCart, updateQuantity, getTotalPrice, getTotalPriceAfterDiscount, getDiscountAmount, isCartOpen, setIsCartOpen, appliedCoupon } = useCart();
+  const { 
+    items, 
+    removeFromCart, 
+    updateQuantity, 
+    getTotalPrice, 
+    getTotalPriceAfterDiscount, 
+    getDiscountAmount, 
+    isCartOpen, 
+    setIsCartOpen, 
+    appliedCoupon,
+    shipping
+  } = useCart();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
@@ -163,6 +174,53 @@ export default function SlideInCart() {
           {/* Footer with total and checkout button */}
           {items.length > 0 && (
             <div className="bg-gradient-to-t from-gray-50 to-white border-t p-6">
+              {/* Free shipping progress */}
+              {shipping.rates.length > 0 && (() => {
+                const freeShippingRate = shipping.rates.find(r => r.method_id.includes('free_shipping'));
+                const flatRate = shipping.rates.find(r => r.method_id.includes('flat_rate'));
+                const currentRate = freeShippingRate || flatRate || shipping.rates[0];
+                
+                if (currentRate?.free_shipping_remaining && currentRate.free_shipping_remaining > 0) {
+                  const progressPercentage = Math.min(
+                    (getTotalPriceAfterDiscount() / (getTotalPriceAfterDiscount() + currentRate.free_shipping_remaining)) * 100,
+                    100
+                  );
+                  
+                  return (
+                    <div className="mb-4 bg-amber-50 rounded-lg p-3 border border-amber-200">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                          <span className="text-sm font-medium text-amber-800">
+                            Nog €{currentRate.free_shipping_remaining.toFixed(2)} tot gratis verzending!
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-full bg-amber-200 rounded-full h-2">
+                        <div 
+                          className="bg-amber-600 h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${progressPercentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                } else if (currentRate?.free && currentRate?.free_shipping_eligible) {
+                  return (
+                    <div className="mb-4 bg-green-50 rounded-lg p-3 border border-green-200 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm font-medium text-green-800">
+                        🎉 Je komt in aanmerking voor gratis verzending!
+                      </span>
+                    </div>
+                  );
+                }
+                return null;
+              })()}
+              
               {/* Discount code section */}
               <div className="mb-4">
                 <CouponInput variant="compact" />
