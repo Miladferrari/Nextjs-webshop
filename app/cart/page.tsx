@@ -175,12 +175,13 @@ export default function CartPage() {
                     <div className="flex items-start gap-4">
                       {/* Product image */}
                       <Link href={`/product/${item.product.id}`} className="flex-shrink-0">
-                        <div className="w-24 h-24 md:w-32 md:h-32 bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <div className="w-24 h-24 md:w-32 md:h-32 bg-gray-100 rounded-md shadow-sm hover:shadow-md transition-shadow flex items-center justify-center p-2">
                           {mainImage ? (
                             <img
                               src={mainImage.src}
                               alt={mainImage.alt || item.product.name}
-                              className="w-full h-full object-cover"
+                              className="max-w-full max-h-full object-contain"
+                              style={{ maxWidth: '100%', maxHeight: '100%' }}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-steel-gray">
@@ -298,8 +299,8 @@ export default function CartPage() {
                 {/* Summary details */}
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between items-center">
-                    <span className="text-steel-gray">Subtotaal</span>
-                    <span className="font-medium">€{getTotalPrice().toFixed(2)}</span>
+                    <span className="text-gray-700">Subtotaal</span>
+                    <span className="font-medium text-gray-900">€{getTotalPrice().toFixed(2)}</span>
                   </div>
                   
                   {appliedCoupon && (
@@ -309,16 +310,16 @@ export default function CartPage() {
                     </div>
                   )}
                   <div className="flex justify-between items-center">
-                    <span className="text-steel-gray">Verzending</span>
+                    <span className="text-gray-700">Verzending</span>
                     {getTotalPriceAfterDiscount() >= shippingThreshold ? (
                       <span className="text-medical-green font-semibold">Gratis</span>
                     ) : (
-                      <span>€4,95</span>
+                      <span className="text-gray-900">€4,95</span>
                     )}
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-steel-gray">BTW (21%)</span>
-                    <span>€{(getTotalPrice() * 0.21).toFixed(2)}</span>
+                    <span className="text-gray-700">BTW (21%)</span>
+                    <span className="text-gray-900">€{(getTotalPriceAfterDiscount() * 0.21).toFixed(2)}</span>
                   </div>
                 </div>
                 

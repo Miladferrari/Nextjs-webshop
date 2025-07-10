@@ -185,3 +185,313 @@ Coupon details: {
   date_expires: '2025-10-31T00:00:00'
 }
  POST /api/coupons/validate 200 in 453ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1558ms (863 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1904ms
+ GET /cart 200 in 170ms
+ ✓ Compiled /search in 221ms (501 modules)
+ GET /search?q=test+product 200 in 342ms
+ GET /search?q=test%20product 200 in 190ms
+ ✓ Compiled in 833ms (877 modules)
+ GET /search?q=test+product 200 in 54ms
+ ✓ Compiled in 311ms (877 modules)
+ GET /search?q=test+product 200 in 86ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 1638ms
+ ✓ Compiled /faq in 226ms (870 modules)
+ GET /faq 200 in 276ms
+ ✓ Compiled /over-ons in 297ms (877 modules)
+ GET /over-ons 200 in 347ms
+ ✓ Compiled /contact in 229ms (884 modules)
+ GET /contact 200 in 280ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 51ms
+ GET /search?q=test 200 in 29ms
+ GET /search?q=test+product+1 200 in 17ms
+ GET /search?q=test+product+4 200 in 17ms
+ GET /search?q=test%20product%204 200 in 196ms
+ ○ Compiling /noodpakketten ...
+ ✓ Compiled /noodpakketten in 1555ms (876 modules)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten 200 in 2134ms
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=menu_order&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten?category=ouderen-pakket 200 in 399ms
+ ✓ Compiled in 1198ms (890 modules)
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=menu_order&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten?category=ouderen-pakket 200 in 231ms
+ ✓ Compiled /product/[id] in 394ms (898 modules)
+[WooCommerce API] Fetching: products/68
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[WooCommerce API] Fetching: products?per_page=4&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+ GET /product/68 200 in 1970ms
+ ✓ Compiled in 534ms (912 modules)
+[WooCommerce API] Fetching: products/68
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[WooCommerce API] Fetching: products?per_page=4&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+ GET /product/68 200 in 103ms
+ ✓ Compiled in 596ms (912 modules)
+[WooCommerce API] Fetching: products/68
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[WooCommerce API] Fetching: products?per_page=4&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+ GET /product/68 200 in 90ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 53ms
+ ✓ Compiled in 566ms (907 modules)
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 134ms
+[WooCommerce API] Fetching: products/69
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[WooCommerce API] Fetching: products?per_page=4&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+ GET /product/69 200 in 392ms
+ GET /search?q=test%20product%204 200 in 155ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1492ms (897 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 2210ms
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten 200 in 106ms
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=menu_order&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten?category=uncategorized 200 in 536ms
+[WooCommerce API] Fetching: products/69
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 1 items
+[WooCommerce API] Fetching: products?per_page=4&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 4 items
+ GET /product/69 200 in 61ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+ GET / 200 in 79ms
+ GET / 200 in 206ms
+ GET /search?q=test+product+4 200 in 28ms
+ GET /search?q=test 200 in 15ms
+ GET / 200 in 42ms
+ GET / 200 in 26ms
+ GET /noodpakketten 200 in 36ms
+ GET /noodpakketten?category=uncategorized 200 in 18ms
+ ✓ Compiled /checkout in 431ms (524 modules)
+ GET /checkout 200 in 628ms
+ ✓ Compiled /cart in 161ms (529 modules)
+ GET /cart 200 in 407ms
+[WooCommerce API] Fetching: products/categories?per_page=100&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten 200 in 32ms
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=menu_order&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET /noodpakketten?category=famillie-pakketen 200 in 529ms
+ GET /checkout 200 in 72ms
+ GET /cart 200 in 90ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 553ms (908 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 708ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 575ms
+ ✓ Compiled in 1481ms (906 modules)
+ GET /cart 200 in 225ms
+ ✓ Compiled in 836ms (902 modules)
+ GET /cart 200 in 94ms
+ GET /cart 200 in 148ms
+ ✓ Compiled /_not-found in 420ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 733ms
+ ✓ Compiled in 1254ms (902 modules)
+ GET /cart 200 in 265ms
+ GET /cart 200 in 183ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 827ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 978ms
+ ✓ Compiled in 1439ms (906 modules)
+ GET /cart 200 in 68ms
+ GET /cart 200 in 164ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 115ms
+ ✓ Compiled in 1113ms (906 modules)
+ GET /cart 200 in 452ms
+ ✓ Compiled in 813ms (902 modules)
+ GET /cart 200 in 54ms
+ GET /cart 200 in 219ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 664ms (892 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 993ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 116ms
+ ✓ Compiled in 867ms (902 modules)
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 149ms
+ ✓ Compiled /_not-found in 170ms (892 modules)
+ GET /pakket-kiezer 404 in 217ms
+ GET /pakket-kiezer 404 in 123ms
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 154ms
+ ✓ Compiled in 286ms (906 modules)
+[WooCommerce API] Fetching: products?per_page=3&page=1&orderby=popularity&order=desc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products/categories?per_page=10&orderby=count&order=desc&hide_empty=true
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 3 items
+[WooCommerce API] Fetching: products?category=15&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=17&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+[WooCommerce API] Fetching: products?category=19&per_page=100&orderby=price&order=asc
+[WooCommerce API] Response status: 200
+[WooCommerce API] Success: Found 2 items
+ GET / 200 in 64ms
+ ✓ Compiled /checkout in 438ms (525 modules)
+ GET /checkout 200 in 841ms
+ GET /cart 200 in 107ms

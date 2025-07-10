@@ -89,12 +89,13 @@ export default function SlideInCart() {
                     <div key={item.product.id} className="bg-off-white rounded-xl p-4 hover:shadow-md transition-shadow">
                       <div className="flex gap-4">
                         {/* Product image */}
-                        <div className="w-24 h-24 bg-white rounded-lg overflow-hidden flex-shrink-0 shadow-sm">
+                        <div className="w-24 h-24 bg-gray-100 rounded-md flex-shrink-0 shadow-sm flex items-center justify-center p-2">
                           {mainImage ? (
                             <img
                               src={mainImage.src}
                               alt={mainImage.alt || item.product.name}
-                              className="w-full h-full object-cover"
+                              className="max-w-full max-h-full object-contain"
+                              style={{ maxWidth: '100%', maxHeight: '100%' }}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-steel-gray/50">
@@ -169,9 +170,9 @@ export default function SlideInCart() {
 
               {/* Subtotal */}
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between items-center text-steel-gray">
-                  <span>Subtotaal</span>
-                  <span>€{getTotalPrice().toFixed(2)}</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700">Subtotaal</span>
+                  <span className="text-gray-900">€{getTotalPrice().toFixed(2)}</span>
                 </div>
                 {appliedCoupon && (
                   <div className="flex justify-between items-center text-green-600">
@@ -182,8 +183,8 @@ export default function SlideInCart() {
                     <span>-€{getDiscountAmount().toFixed(2)}</span>
                   </div>
                 )}
-                <div className="flex justify-between items-center text-steel-gray">
-                  <span>Verzending</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700">Verzending</span>
                   <span className="text-medical-green font-semibold">Gratis</span>
                 </div>
                 <div className="pt-3 border-t">

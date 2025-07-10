@@ -107,9 +107,9 @@ class WooCommerceAPI {
     this.config = config;
   }
 
-  private async fetchAPI<T>(endpoint: string, options?: RequestInit & { cache?: boolean }): Promise<T> {
+  private async fetchAPI<T>(endpoint: string, options?: RequestInit & { useCache?: boolean }): Promise<T> {
     const cacheKey = `${endpoint}-${JSON.stringify(options || {})}`;
-    const shouldCache = options?.cache !== false;
+    const shouldCache = options?.useCache !== false;
 
     // Check cache first
     if (shouldCache) {
@@ -119,15 +119,19 @@ class WooCommerceAPI {
       }
     }
 
+    // Build URL with query parameter authentication
     const url = new URL(`${this.config.baseUrl}/${endpoint}`);
     
-    const authString = `${this.config.consumerKey}:${this.config.consumerSecret}`;
-    const encodedAuth = Buffer.from(authString).toString('base64');
+    // Add consumer key and secret as query parameters
+    const separator = endpoint.includes('?') ? '&' : '?';
+    const authParams = `${separator}consumer_key=${this.config.consumerKey}&consumer_secret=${this.config.consumerSecret}`;
+    const fullUrl = `${url.toString()}${authParams}`;
 
-    const response = await fetch(url.toString(), {
+    console.log(`[WooCommerce API] Fetching: ${endpoint}`);
+
+    const response = await fetch(fullUrl, {
       ...options,
       headers: {
-        'Authorization': `Basic ${encodedAuth}`,
         'Content-Type': 'application/json',
         ...options?.headers,
       },
@@ -137,11 +141,16 @@ class WooCommerceAPI {
       }
     });
 
+    console.log(`[WooCommerce API] Response status: ${response.status}`);
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[WooCommerce API] Error: ${response.status} ${response.statusText}`, errorText);
       throw new Error(`WooCommerce API error: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
+    console.log(`[WooCommerce API] Success: Found ${Array.isArray(data) ? data.length : 1} items`);
 
     // Cache the response
     if (shouldCache) {
@@ -226,14 +235,15 @@ class WooCommerceAPI {
     if (params?.page) queryParams.append('page', params.page.toString());
 
     const endpoint = `products?${queryParams.toString()}`;
-    return this.fetchAPI<Product[]>(endpoint, { cache: false }); // Don't cache search results
+    return this.fetchAPI<Product[]>(endpoint, { useCache: false, cache: 'no-store' }); // Don't cache search results
   }
 
   async createOrder(orderData: any): Promise<any> {
     return this.fetchAPI('orders', {
       method: 'POST',
       body: JSON.stringify(orderData),
-      cache: false
+      useCache: false,
+      cache: 'no-store'
     });
   }
 
@@ -241,7 +251,7 @@ class WooCommerceAPI {
     try {
       // WooCommerce API requires searching coupons by code
       const endpoint = `coupons?code=${encodeURIComponent(code)}`;
-      const coupons = await this.fetchAPI<Coupon[]>(endpoint, { cache: false });
+      const coupons = await this.fetchAPI<Coupon[]>(endpoint, { useCache: false, cache: 'no-store' });
       
       // Return the first matching coupon or null if not found
       return coupons.length > 0 ? coupons[0] : null;

@@ -28,6 +28,7 @@ function SearchResults() {
       setError(null);
 
       try {
+        console.log(`[Search] Searching for: "${query}" (page ${page})`);
         const results = await woocommerce.searchProducts(query, {
           per_page: 12,
           page: page
@@ -40,9 +41,11 @@ function SearchResults() {
         }
         
         setHasMore(results.length === 12);
+        console.log(`[Search] Found ${results.length} products`);
       } catch (err) {
-        console.error('Search error:', err);
-        setError('Er is een fout opgetreden bij het zoeken. Probeer het opnieuw.');
+        console.error('[Search] Error:', err);
+        const errorMessage = err instanceof Error ? err.message : 'Onbekende fout';
+        setError(`Er is een fout opgetreden bij het zoeken: ${errorMessage}`);
       } finally {
         setLoading(false);
       }
