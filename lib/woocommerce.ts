@@ -110,29 +110,18 @@ export interface ShippingRate {
   free_shipping_min_amount?: number;
 }
 
-// Cache implementation
+// Cache implementation - DISABLED for real-time updates
 class CacheManager {
   private cache: Map<string, { data: any; timestamp: number }> = new Map();
-  private readonly TTL = 5 * 60 * 1000; // 5 minutes
+  private readonly TTL = 0; // Disabled - always fetch fresh data
 
   set(key: string, data: any) {
-    this.cache.set(key, {
-      data,
-      timestamp: Date.now()
-    });
+    // Caching disabled - do not store
   }
 
   get(key: string) {
-    const cached = this.cache.get(key);
-    if (!cached) return null;
-
-    const isExpired = Date.now() - cached.timestamp > this.TTL;
-    if (isExpired) {
-      this.cache.delete(key);
-      return null;
-    }
-
-    return cached.data;
+    // Caching disabled - always return null to force fresh fetch
+    return null;
   }
 
   clear() {
@@ -149,16 +138,9 @@ class WooCommerceAPI {
   }
 
   private async fetchAPI<T>(endpoint: string, options?: RequestInit & { useCache?: boolean }): Promise<T> {
-    const cacheKey = `${endpoint}-${JSON.stringify(options || {})}`;
-    const shouldCache = options?.useCache !== false;
-
-    // Check cache first
-    if (shouldCache) {
-      const cached = this.cache.get(cacheKey);
-      if (cached) {
-        return cached as T;
-      }
-    }
+    // Caching disabled - always fetch fresh data
+    const timestamp = new Date().toISOString();
+    console.log(`[WooCommerce API] ${timestamp} - Fetching fresh data (no cache)`)
 
     // Build URL with query parameter authentication
     const url = new URL(`${this.config.baseUrl}/${endpoint}`);
@@ -174,12 +156,15 @@ class WooCommerceAPI {
       ...options,
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
         ...options?.headers,
       },
-      // Next.js specific caching
+      // Next.js specific caching - DISABLED for real-time updates
       next: { 
-        revalidate: 300 // Revalidate every 5 minutes
-      }
+        revalidate: 0 // Always fetch fresh data
+      },
+      cache: 'no-store' // Disable Next.js caching
     });
 
     console.log(`[WooCommerce API] Response status: ${response.status}`);
@@ -193,10 +178,7 @@ class WooCommerceAPI {
     const data = await response.json();
     console.log(`[WooCommerce API] Success: Found ${Array.isArray(data) ? data.length : 1} items`);
 
-    // Cache the response
-    if (shouldCache) {
-      this.cache.set(cacheKey, data);
-    }
+    // Caching disabled - don't store response
 
     return data;
   }

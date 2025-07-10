@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCart } from '../contexts/CartContext';
+import { useCartWithToast } from '../hooks/useCartWithToast';
 import CouponInput from '../components/CouponInput';
 
 export default function CartPage() {
@@ -16,7 +16,7 @@ export default function CartPage() {
     getDiscountAmount, 
     appliedCoupon,
     shipping
-  } = useCart();
+  } = useCartWithToast();
   const [removingItems, setRemovingItems] = useState<number[]>([]);
 
   const handleRemoveItem = (productId: number) => {

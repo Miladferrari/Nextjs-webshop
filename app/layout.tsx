@@ -6,6 +6,7 @@ import SlideInCart from "./components/SlideInCart";
 import ClientOnly from "./components/ClientOnly";
 import StickyHeader from "./components/StickyHeader";
 import { CartProvider } from "./contexts/CartContext";
+import { ToastProvider } from "./contexts/ToastContext";
 import WebVitals from "./components/WebVitals";
 
 const geistSans = Geist({
@@ -62,19 +63,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <CartProvider>
-          <ClientOnly>
-            <WebVitals />
-          </ClientOnly>
-          <ClientOnly>
-            <StickyHeader />
-          </ClientOnly>
-          {children}
-          <Footer />
-          <ClientOnly>
-            <SlideInCart />
-          </ClientOnly>
-        </CartProvider>
+        <ToastProvider>
+          <CartProvider>
+            <ClientOnly>
+              <WebVitals />
+            </ClientOnly>
+            <ClientOnly>
+              <StickyHeader />
+            </ClientOnly>
+            {children}
+            <Footer />
+            <ClientOnly>
+              <SlideInCart />
+            </ClientOnly>
+          </CartProvider>
+        </ToastProvider>
       </body>
     </html>
   );

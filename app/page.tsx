@@ -1,18 +1,22 @@
 import { woocommerce, Category } from '@/lib/woocommerce';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import Link from 'next/link';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // Lazy load heavy components
-const ProductCard = dynamic(() => import('./components/ProductCard'), {
+const ProductCard = dynamicImport(() => import('./components/ProductCard'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />,
   ssr: true
 });
 
-const TestimonialsSection = dynamic(() => import('./components/TestimonialsSection'), {
+const TestimonialsSection = dynamicImport(() => import('./components/TestimonialsSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />
 });
 
-const ComparisonSection = dynamic(() => import('./components/ComparisonSection'), {
+const ComparisonSection = dynamicImport(() => import('./components/ComparisonSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />
 });
 

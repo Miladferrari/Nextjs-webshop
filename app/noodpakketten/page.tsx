@@ -3,6 +3,10 @@ import { woocommerce, Category } from '@/lib/woocommerce';
 import ProductCard from '../components/ProductCard';
 import FilteredProducts from '../components/FilteredProducts';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface CatalogPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }

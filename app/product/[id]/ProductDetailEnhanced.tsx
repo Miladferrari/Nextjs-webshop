@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useCart } from '../../contexts/CartContext';
+import { useCartWithToast } from '../../hooks/useCartWithToast';
+import { useToast } from '../../contexts/ToastContext';
 import type { Product } from '@/lib/woocommerce';
 import Image from 'next/image';
 
@@ -112,7 +113,8 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
     return Math.floor(Math.random() * 15) + 5;
   });
   
-  const { addToCart } = useCart();
+  const { addToCart } = useCartWithToast();
+  const { showToast } = useToast();
 
   const images = product.images.length > 0 ? product.images : [{ id: 0, src: '', alt: product.name }];
   const mainImage = images[selectedImage];
@@ -120,6 +122,9 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
   const regularPrice = parseFloat(product.regular_price);
   const isOnSale = product.on_sale && regularPrice > price;
   const discount = isOnSale ? Math.round(((regularPrice - price) / regularPrice) * 100) : 0;
+  
+  // Check if product is out of stock
+  const isOutOfStock = product.stock_status !== 'instock' || product.stock_quantity === 0;
 
   // Simulate live visitors
   useEffect(() => {
@@ -165,6 +170,9 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
   }, []);
 
   const handleAddToCart = () => {
+    // Don't add to cart if out of stock
+    if (isOutOfStock) return;
+    
     addToCart(product, quantity);
     
     // Add bundle products if selected
@@ -311,11 +319,20 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                 </>
               )}
               
-              {/* Only show sale badge if on sale */}
-              {isOnSale && (
+              {/* Only show sale badge if on sale and in stock */}
+              {isOnSale && !isOutOfStock && (
                 <div className="absolute top-4 left-4">
                   <div className="bg-amber-orange text-white text-lg font-bold px-4 py-2 rounded-full shadow-lg">
                     -{discount}% KORTING
+                  </div>
+                </div>
+              )}
+              
+              {/* Out of stock overlay */}
+              {isOutOfStock && (
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-2xl shadow-lg">
+                    UITVERKOCHT
                   </div>
                 </div>
               )}
@@ -495,7 +512,7 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
 
             {/* Stock urgency */}
             <div className="space-y-3">
-              {stockLeft < 10 && (
+              {stockLeft < 10 && !isOutOfStock && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-red-600">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -506,41 +523,58 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                 </div>
               )}
 
-              <div className="flex items-center gap-4 text-sm">
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-medical-green font-semibold">Direct leverbaar</span>
-                </div>
-                <div className="flex items-center gap-2 text-steel-gray">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                  <span>Voor 14:00 besteld, morgen in huis</span>
-                </div>
+              <div className="flex flex-col gap-3">
+                {isOutOfStock ? (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <div>
+                        <p className="text-red-800 font-bold">Niet op voorraad</p>
+                        <p className="text-red-600 text-sm">Binnenkort weer beschikbaar</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-medical-green font-semibold">Direct leverbaar</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-steel-gray">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                      <span>Voor 14:00 besteld, morgen in huis</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
 
-            {/* Frequently bought together */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="font-bold text-navy-blue mb-4">Vaak samen gekocht</h3>
-              <div className="space-y-3">
-                {bundleProducts.map((bundle) => (
-                  <label key={bundle.name} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="checkbox"
-                      checked={selectedBundle.includes(bundle.name)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setSelectedBundle([...selectedBundle, bundle.name]);
-                        } else {
-                          setSelectedBundle(selectedBundle.filter(n => n !== bundle.name));
-                        }
-                      }}
-                      className="w-5 h-5 text-medical-green rounded focus:ring-medical-green"
-                    />
+            {/* Frequently bought together - only show when in stock */}
+            {!isOutOfStock && (
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h3 className="font-bold text-navy-blue mb-4">Vaak samen gekocht</h3>
+                <div className="space-y-3">
+                  {bundleProducts.map((bundle) => (
+                    <label key={bundle.name} className="flex items-center gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={selectedBundle.includes(bundle.name)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedBundle([...selectedBundle, bundle.name]);
+                          } else {
+                            setSelectedBundle(selectedBundle.filter(n => n !== bundle.name));
+                          }
+                        }}
+                        className="w-5 h-5 text-medical-green rounded focus:ring-medical-green"
+                      />
                     <div className="flex-1">
                       <p className="font-medium text-navy-blue group-hover:text-medical-green transition-colors">
                         {bundle.name}
@@ -565,7 +599,8 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                   </div>
                 </div>
               )}
-            </div>
+              </div>
+            )}
 
             {/* Purchase section */}
             <div className="space-y-4">
@@ -575,8 +610,8 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                   <div className="inline-flex items-center border-2 border-gray-200 rounded-full overflow-hidden bg-white shadow-sm">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-4 py-3 hover:bg-gray-50 transition-colors"
-                      disabled={quantity <= 1}
+                      className="px-4 py-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={quantity <= 1 || isOutOfStock}
                     >
                       <svg className="w-4 h-4 text-steel-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 12H4" />
@@ -585,13 +620,39 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
                     <input
                       type="number"
                       value={quantity}
-                      onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="w-20 text-center py-3 font-bold text-lg text-navy-blue focus:outline-none"
+                      onChange={(e) => {
+                        const newQuantity = Math.max(1, parseInt(e.target.value) || 1);
+                        // Check stock limit
+                        if (product.stock_quantity && newQuantity > product.stock_quantity) {
+                          showToast(
+                            `Er is niet genoeg voorraad van dit product beschikbaar. Maximum beschikbaar: ${product.stock_quantity}`,
+                            'error'
+                          );
+                          setQuantity(product.stock_quantity);
+                        } else {
+                          setQuantity(newQuantity);
+                        }
+                      }}
+                      className="w-20 text-center py-3 font-bold text-lg text-navy-blue focus:outline-none disabled:opacity-50"
                       min="1"
+                      max={product.stock_quantity || undefined}
+                      disabled={isOutOfStock}
                     />
                     <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="px-4 py-3 hover:bg-gray-50 transition-colors"
+                      onClick={() => {
+                        const newQuantity = quantity + 1;
+                        // Check stock limit
+                        if (product.stock_quantity && newQuantity > product.stock_quantity) {
+                          showToast(
+                            `Er is niet genoeg voorraad van dit product beschikbaar. Maximum beschikbaar: ${product.stock_quantity}`,
+                            'error'
+                          );
+                        } else {
+                          setQuantity(newQuantity);
+                        }
+                      }}
+                      className="px-4 py-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={isOutOfStock || (product.stock_quantity !== null && quantity >= product.stock_quantity)}
                     >
                       <svg className="w-4 h-4 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -607,13 +668,28 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
 
               <button 
                 onClick={handleAddToCart}
-                className="w-full bg-medical-green text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-medical-green/90 transition-all shadow-lg hover:shadow-xl disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                disabled={product.stock_status !== 'instock'}
+                className={`w-full py-4 px-8 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 ${
+                  isOutOfStock 
+                    ? 'bg-gray-400 text-white cursor-not-allowed' 
+                    : 'bg-medical-green text-white hover:bg-medical-green/90 disabled:bg-gray-300 disabled:cursor-not-allowed'
+                }`}
+                disabled={isOutOfStock}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                {product.stock_status === 'instock' ? 'Direct in winkelwagen' : 'Uitverkocht'}
+                {isOutOfStock ? (
+                  <>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span>Uitverkocht</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span>Direct in winkelwagen</span>
+                  </>
+                )}
               </button>
 
               {/* Trust icons - moved here for better conversion */}
@@ -1011,16 +1087,23 @@ export default function ProductDetailEnhanced({ product, relatedProducts }: Prod
         <div className="flex items-center justify-between gap-4">
           <div className="flex-1">
             <p className="text-2xl font-bold text-navy-blue">€{price.toFixed(2)}</p>
-            {stockLeft < 10 && (
+            {stockLeft < 10 && !isOutOfStock && (
               <p className="text-xs text-amber-orange">Nog {stockLeft} op voorraad!</p>
+            )}
+            {isOutOfStock && (
+              <p className="text-xs text-red-600 font-semibold">Uitverkocht</p>
             )}
           </div>
           <button
             onClick={handleAddToCart}
-            disabled={product.stock_status !== 'instock'}
-            className="flex-shrink-0 bg-medical-green text-white px-6 py-3 rounded-full font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-medical-green/90 transition-all shadow-lg"
+            disabled={isOutOfStock}
+            className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold transition-all shadow-lg ${
+              isOutOfStock 
+                ? 'bg-gray-400 text-white cursor-not-allowed' 
+                : 'bg-medical-green text-white hover:bg-medical-green/90'
+            }`}
           >
-            <span>In winkelwagen</span>
+            <span>{isOutOfStock ? 'Uitverkocht' : 'In winkelwagen'}</span>
           </button>
         </div>
       </div>

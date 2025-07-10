@@ -91,6 +91,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [items, isHydrated]);
 
   const addToCart = (product: Product, quantity: number = 1) => {
+    // Don't add out of stock products
+    if (product.stock_status !== 'instock' || product.stock_quantity === 0) {
+      console.warn('Cannot add out of stock product to cart:', product.name);
+      return;
+    }
+    
     setItems(prevItems => {
       const existingItem = prevItems.find(item => item.product.id === product.id);
       

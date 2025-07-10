@@ -2,6 +2,10 @@ import { woocommerce } from '@/lib/woocommerce';
 import { notFound } from 'next/navigation';
 import ProductDetailEnhanced from './ProductDetailEnhanced';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface ProductPageProps {
   params: Promise<{ id: string }>;
 }

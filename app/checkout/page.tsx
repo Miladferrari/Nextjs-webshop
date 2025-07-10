@@ -110,6 +110,36 @@ export default function CheckoutPage() {
     setError('');
 
     try {
+      // First, validate stock availability
+      const stockResponse = await fetch('/api/validate-stock', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }),
+      });
+
+      const stockValidation = await stockResponse.json();
+
+      if (!stockValidation.valid) {
+        // Build error message
+        let errorMessage = 'Er zijn problemen met de voorraad:\n\n';
+        stockValidation.issues.forEach((issue: any) => {
+          if (issue.issue === 'out_of_stock') {
+            errorMessage += `• ${issue.productName} is uitverkocht\n`;
+          } else if (issue.issue === 'insufficient_stock') {
+            errorMessage += `• ${issue.productName}: slechts ${issue.available} beschikbaar (${issue.requested} gevraagd)\n`;
+          }
+        });
+        errorMessage += '\nPas je winkelwagen aan en probeer het opnieuw.';
+        
+        setError(errorMessage);
+        setLoading(false);
+        // Scroll to top to show error
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
       const orderData = {
         billing: {
           first_name: formData.firstName,

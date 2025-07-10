@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useCart } from '../../contexts/CartContext';
+import { useCartWithToast } from '../../hooks/useCartWithToast';
+import { useToast } from '../../contexts/ToastContext';
 import type { Product } from '@/lib/woocommerce';
 
 interface ProductDetailProps {
@@ -23,8 +24,15 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
   const [selectedImage, setSelectedImage] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
   const [activeTab, setActiveTab] = useState<'description' | 'shipping'>('description');
-  const [stockLeft] = useState(() => Math.floor(Math.random() * 15) + 5); // Set once on mount
-  const { addToCart } = useCart();
+  // Use actual stock quantity from product if available, otherwise use a mock value
+  const [stockLeft] = useState(() => {
+    if (product.stock_quantity && product.stock_quantity > 0) {
+      return product.stock_quantity;
+    }
+    return Math.floor(Math.random() * 15) + 5;
+  });
+  const { addToCart } = useCartWithToast();
+  const { showToast } = useToast();
 
   const images = product.images.length > 0 ? product.images : [{ id: 0, src: '', alt: product.name }];
   const mainImage = images[selectedImage];
@@ -32,6 +40,9 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
   const regularPrice = parseFloat(product.regular_price);
   const isOnSale = product.on_sale && regularPrice > price;
   const discount = isOnSale ? Math.round(((regularPrice - price) / regularPrice) * 100) : 0;
+  
+  // Check if product is out of stock
+  const isOutOfStock = product.stock_status !== 'instock' || product.stock_quantity === 0;
 
   // Countdown timer for urgency
   useEffect(() => {
@@ -52,6 +63,9 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
   }, []);
 
   const handleAddToCart = () => {
+    // Don't add to cart if out of stock
+    if (isOutOfStock) return;
+    
     addToCart(product, quantity);
     setShowAddedMessage(true);
     setTimeout(() => setShowAddedMessage(false), 3000);
@@ -97,10 +111,17 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                     </svg>
                   </div>
                 )}
-                {isOnSale && (
+                {isOnSale && !isOutOfStock && (
                   <span className="absolute top-4 left-4 bg-amber-orange text-white text-lg font-bold px-4 py-2 rounded-full">
                     -{discount}%
                   </span>
+                )}
+                {isOutOfStock && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <div className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-2xl shadow-lg">
+                      UITVERKOCHT
+                    </div>
+                  </div>
                 )}
                 {/* Trust badge */}
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-2 rounded-lg shadow-lg">
@@ -349,7 +370,7 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
             {/* Stock and shipping status */}
             <div className="mb-6 border-t border-b py-4">
               <div className="flex items-center gap-2 mb-3">
-                {product.stock_status === 'instock' ? (
+                {product.stock_status === 'instock' && product.stock_quantity !== 0 ? (
                   <>
                     <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -360,30 +381,37 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                     )}
                   </>
                 ) : (
-                  <>
-                    <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span className="text-red-600 font-semibold">Uitverkocht</span>
-                  </>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 w-full">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <div>
+                        <p className="text-red-800 font-bold">Niet op voorraad</p>
+                        <p className="text-red-600 text-sm">Binnenkort weer beschikbaar</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
               
-              {/* Delivery info */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <svg className="w-5 h-5 text-steel-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-steel-gray">Voor 14:00 besteld, morgen in huis</span>
+              {/* Delivery info - only show when in stock */}
+              {product.stock_status === 'instock' && product.stock_quantity !== 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <svg className="w-5 h-5 text-steel-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-steel-gray">Voor 14:00 besteld, morgen in huis</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <svg className="w-5 h-5 text-steel-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span className="text-steel-gray">Gratis verzending vanaf €75</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <svg className="w-5 h-5 text-steel-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                  <span className="text-steel-gray">Gratis verzending vanaf €75</span>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Short description */}
@@ -399,8 +427,8 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                 <div className="inline-flex items-center border-2 border-gray-200 rounded-full overflow-hidden bg-white shadow-sm">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-3 hover:bg-gray-50 transition-colors group"
-                    disabled={quantity <= 1}
+                    className="px-4 py-3 hover:bg-gray-50 transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={quantity <= 1 || isOutOfStock}
                   >
                     <svg className="w-4 h-4 text-steel-gray group-hover:text-navy-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 12H4" />
@@ -409,13 +437,39 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                   <input
                     type="number"
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-20 text-center py-3 font-bold text-lg text-navy-blue focus:outline-none bg-transparent"
+                    onChange={(e) => {
+                      const newQuantity = Math.max(1, parseInt(e.target.value) || 1);
+                      // Check stock limit
+                      if (product.stock_quantity && newQuantity > product.stock_quantity) {
+                        showToast(
+                          `Er is niet genoeg voorraad van dit product beschikbaar. Maximum beschikbaar: ${product.stock_quantity}`,
+                          'error'
+                        );
+                        setQuantity(product.stock_quantity);
+                      } else {
+                        setQuantity(newQuantity);
+                      }
+                    }}
+                    className="w-20 text-center py-3 font-bold text-lg text-navy-blue focus:outline-none bg-transparent disabled:opacity-50"
                     min="1"
+                    max={product.stock_quantity || undefined}
+                    disabled={isOutOfStock}
                   />
                   <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-3 hover:bg-gray-50 transition-colors group"
+                    onClick={() => {
+                      const newQuantity = quantity + 1;
+                      // Check stock limit
+                      if (product.stock_quantity && newQuantity > product.stock_quantity) {
+                        showToast(
+                          `Er is niet genoeg voorraad van dit product beschikbaar. Maximum beschikbaar: ${product.stock_quantity}`,
+                          'error'
+                        );
+                      } else {
+                        setQuantity(newQuantity);
+                      }
+                    }}
+                    className="px-4 py-3 hover:bg-gray-50 transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isOutOfStock || (product.stock_quantity !== null && quantity >= product.stock_quantity)}
                   >
                     <svg className="w-4 h-4 text-steel-gray group-hover:text-medical-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -427,13 +481,28 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
               {/* Add to cart button */}
               <button 
                 onClick={handleAddToCart}
-                className="w-full bg-amber-orange text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-amber-orange/90 transition-all shadow-md hover:shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                disabled={product.stock_status !== 'instock'}
+                className={`w-full py-4 px-8 rounded-lg font-bold text-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-3 ${
+                  isOutOfStock 
+                    ? 'bg-gray-400 text-white cursor-not-allowed' 
+                    : 'bg-amber-orange text-white hover:bg-amber-orange/90 disabled:bg-gray-300 disabled:cursor-not-allowed'
+                }`}
+                disabled={isOutOfStock}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                {product.stock_status === 'instock' ? 'In winkelwagen' : 'Uitverkocht'}
+                {isOutOfStock ? (
+                  <>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span>Uitverkocht</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span>In winkelwagen</span>
+                  </>
+                )}
               </button>
 
             </div>
@@ -720,13 +789,28 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
           </div>
           <button
             onClick={handleAddToCart}
-            disabled={product.stock_status !== 'instock'}
-            className="flex-shrink-0 bg-medical-green text-white px-6 py-3 rounded-full font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-medical-green/90 transition-all flex items-center gap-2"
+            disabled={isOutOfStock}
+            className={`flex-shrink-0 px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2 ${
+              isOutOfStock 
+                ? 'bg-gray-400 text-white cursor-not-allowed' 
+                : 'bg-medical-green text-white hover:bg-medical-green/90 disabled:bg-gray-300 disabled:cursor-not-allowed'
+            }`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <span>Toevoegen</span>
+            {isOutOfStock ? (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>Uitverkocht</span>
+              </>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Toevoegen</span>
+              </>
+            )}
           </button>
         </div>
       </div>

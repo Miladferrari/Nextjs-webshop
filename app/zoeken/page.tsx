@@ -5,42 +5,27 @@ import { useSearchParams } from 'next/navigation';
 import ProductCard from '../components/ProductCard';
 import type { Product } from '@/lib/woocommerce';
 
-// Mock search function - in production, this would call your API
+// Real-time search using WooCommerce API
 const searchProducts = async (query: string): Promise<Product[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  // Mock products - in production, fetch from WooCommerce API
-  const mockProducts: Product[] = [
-    {
-      id: 1,
-      name: 'Basis Noodpakket 3 dagen',
-      slug: 'basis-noodpakket-3-dagen',
-      price: '89.00',
-      regular_price: '99.00',
-      on_sale: true,
-      stock_status: 'instock',
-      images: [{ src: 'https://via.placeholder.com/400', alt: 'Product' }],
-      short_description: 'Compleet noodpakket voor 3 dagen',
-    },
-    {
-      id: 2,
-      name: 'Familie Noodpakket 7 dagen',
-      slug: 'familie-noodpakket-7-dagen',
-      price: '249.00',
-      regular_price: '249.00',
-      on_sale: false,
-      stock_status: 'instock',
-      images: [{ src: 'https://via.placeholder.com/400', alt: 'Product' }],
-      short_description: 'Voor het hele gezin',
-    },
-  ] as Product[];
-  
-  // Simple search filter
-  return mockProducts.filter(product => 
-    product.name.toLowerCase().includes(query.toLowerCase()) ||
-    product.short_description.toLowerCase().includes(query.toLowerCase())
-  );
+  try {
+    const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    });
+    
+    if (!response.ok) {
+      console.error('Search failed:', response.statusText);
+      return [];
+    }
+    
+    const data = await response.json();
+    return data.products || [];
+  } catch (error) {
+    console.error('Search error:', error);
+    return [];
+  }
 };
 
 export default function ZoekenPage() {

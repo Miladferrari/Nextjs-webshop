@@ -3,6 +3,10 @@ import ProductCard from '../../components/ProductCard';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface CatalogPageProps {
   params: Promise<{ slug: string }>;
 }

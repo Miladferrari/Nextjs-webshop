@@ -4,7 +4,7 @@ import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useCart } from '../contexts/CartContext';
+import { useCartWithToast } from '../hooks/useCartWithToast';
 import CouponInput from './CouponInput';
 
 export default function SlideInCart() {
@@ -19,7 +19,7 @@ export default function SlideInCart() {
     setIsCartOpen, 
     appliedCoupon,
     shipping
-  } = useCart();
+  } = useCartWithToast();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
