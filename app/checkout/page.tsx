@@ -225,8 +225,8 @@ export default function CheckoutPage() {
         coupon: appliedCoupon
       }));
       
-      // Clear cart - it will be restored if payment fails
-      clearCart();
+      // Do NOT clear cart here - only clear after successful payment
+      // clearCart();
       
       // Redirect to our custom payment page
       router.push('/checkout/payment');

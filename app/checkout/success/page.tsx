@@ -3,15 +3,18 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useCart } from '../../contexts/CartContext';
 
 function SuccessContent() {
   const searchParams = useSearchParams();
+  const { clearCart } = useCart();
   const orderId = searchParams.get('order_id') || searchParams.get('order');
   const orderKey = searchParams.get('key');
   const [orderNumber, setOrderNumber] = useState<string>('');
   const [orderStatus, setOrderStatus] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>('');
+  const [cartCleared, setCartCleared] = useState(false);
 
   useEffect(() => {
     const checkOrder = async () => {
@@ -38,6 +41,16 @@ function SuccessContent() {
           
           // Clear pending order from session
           sessionStorage.removeItem('pendingOrderId');
+          sessionStorage.removeItem('orderData');
+          sessionStorage.removeItem('completedOrderId');
+          
+          // Clear cart ONLY if payment is confirmed as successful
+          const paymentSuccessStatuses = ['processing', 'completed', 'on-hold'];
+          if (paymentSuccessStatuses.includes(data.order.status) && !cartCleared) {
+            clearCart();
+            setCartCleared(true);
+            console.log('Cart cleared after successful payment confirmation');
+          }
         } else {
           setError('Kon bestellingsinformatie niet ophalen');
         }
@@ -50,7 +63,7 @@ function SuccessContent() {
     };
 
     checkOrder();
-  }, [orderId, orderKey]);
+  }, [orderId, orderKey, cartCleared, clearCart]);
 
   if (loading) {
     return (
