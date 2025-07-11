@@ -52,8 +52,8 @@ export default function ContactPage() {
             </div>
             <h3 className="font-semibold text-navy-blue text-lg mb-2">Email ons</h3>
             <p className="text-steel-gray mb-4">We reageren binnen 24 uur</p>
-            <a href="mailto:info@noodklaar.nl" className="text-medical-green font-semibold hover:text-medical-green/80">
-              info@noodklaar.nl
+            <a href="mailto:info@123noodklaar.nl" className="text-medical-green font-semibold hover:text-medical-green/80">
+              info@123noodklaar.nl
             </a>
           </div>
 
@@ -206,7 +206,7 @@ export default function ContactPage() {
                   <h4 className="font-semibold text-medical-green mb-2">Contact</h4>
                   <p className="text-gray-300">
                     Tel: +31 20 123 4567<br />
-                    Email: info@noodklaar.nl
+                    Email: info@123noodklaar.nl
                   </p>
                 </div>
 

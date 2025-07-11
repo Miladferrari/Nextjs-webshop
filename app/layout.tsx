@@ -24,9 +24,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NoodKlaar - Emergency Preparedness Made Simple",
+  title: "123noodklaar.nl - Emergency Preparedness Made Simple",
   description: "Expertly curated emergency kits for families, solo travelers, and pets. Stay prepared with high-quality emergency supplies.",
-  metadataBase: new URL('https://noodklaar.nl'),
+  metadataBase: new URL('https://123noodklaar.nl'),
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'NoodKlaar - Emergency Preparedness Made Simple',
+    title: '123noodklaar.nl - Emergency Preparedness Made Simple',
     description: 'Expertly curated emergency kits for families',
     type: 'website',
   },

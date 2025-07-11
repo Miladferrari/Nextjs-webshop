@@ -48,7 +48,7 @@ export default function AboutPage() {
       {/* Hero Section - matching contact page style */}
       <section className="bg-gradient-to-br from-navy-blue to-navy-blue/90 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Over NoodKlaar</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Over 123noodklaar.nl</h1>
           <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
             Uw vertrouwde partner in noodvoorbereiding. Professioneel, betrouwbaar, compleet.
           </p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-steel-gray">
                 <p>
-                  NoodKlaar ontstond tijdens de eerste lockdown van 2020. Oprichter Jan van der Berg, 
+                  123noodklaar.nl ontstond tijdens de eerste lockdown van 2020. Oprichter Jan van der Berg, 
                   voormalig brandweercommandant, zag hoe onvoorbereid veel Nederlandse gezinnen waren 
                   op crisissituaties.
                 </p>
@@ -171,7 +171,7 @@ export default function AboutPage() {
       <section className="py-16 bg-off-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-navy-blue mb-12">
-            Waarom kiezen voor NoodKlaar?
+            Waarom kiezen voor 123noodklaar.nl?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

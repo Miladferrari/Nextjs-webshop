@@ -9,7 +9,7 @@ const ComparisonSection = memo(function ComparisonSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-navy-blue mb-3">
-            Waarom een NoodKlaar pakket?
+            Waarom een 123noodklaar.nl pakket?
           </h2>
           <p className="text-lg text-steel-gray">
             De slimme keuze voor uw veiligheid
@@ -18,12 +18,12 @@ const ComparisonSection = memo(function ComparisonSection() {
         
         {/* Comparison cards */}
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          {/* NoodKlaar Card */}
+          {/* 123noodklaar.nl Card */}
           <div className="relative">
             <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden">
               <div className="bg-gradient-to-r from-medical-green to-medical-green/90 p-6 text-white">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-bold">NoodKlaar Pakket</h3>
+                  <h3 className="text-xl font-bold">123noodklaar.nl Pakket</h3>
                   <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
                     AANBEVOLEN
                   </span>

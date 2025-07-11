@@ -120,7 +120,7 @@ const Header = memo(function Header() {
                   <path d="M20 0L0 8V20C0 31.05 8.5 41.14 20 44C31.5 41.14 40 31.05 40 20V8L20 0Z" fill="#93c84a"/>
                   <path d="M28 18H22V12H18V18H12V22H18V28H22V22H28V18Z" fill="white"/>
                 </svg>
-                <span className="ml-3 text-xl lg:text-2xl font-bold text-navy-blue">NoodKlaar</span>
+                <span className="ml-3 text-xl lg:text-2xl font-bold text-navy-blue">123noodklaar.nl</span>
               </Link>
 
               {/* Search bar - Tablet (768px-1024px) */}

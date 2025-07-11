@@ -7,8 +7,8 @@ import { CartProvider } from '../contexts/CartContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Afrekenen - NoodKlaar',
-  description: 'Veilig afrekenen bij NoodKlaar',
+  title: 'Afrekenen - 123noodklaar.nl',
+  description: 'Veilig afrekenen bij 123noodklaar.nl',
 };
 
 export default function CheckoutLayout({

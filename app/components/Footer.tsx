@@ -76,7 +76,7 @@ const Footer = memo(function Footer() {
               <h4 className="text-lg font-semibold mb-4 text-navy-blue">Navigatie</h4>
               <ul className="space-y-2">
                 <li><Link href="/" className="text-steel-gray hover:text-medical-green transition-colors">Home</Link></li>
-                <li><Link href="/shop" className="text-steel-gray hover:text-medical-green transition-colors">Shop</Link></li>
+                <li><Link href="/collections" className="text-steel-gray hover:text-medical-green transition-colors">Shop</Link></li>
                 <li><Link href="/quiz" className="text-steel-gray hover:text-medical-green transition-colors">Pakket Kiezer</Link></li>
                 <li><Link href="/cart" className="text-steel-gray hover:text-medical-green transition-colors">Winkelwagen</Link></li>
               </ul>
@@ -186,7 +186,7 @@ const Footer = memo(function Footer() {
               </Link>
             </div>
             <p className="text-sm text-gray-300">
-              © 2025 NoodKlaar. Alle rechten voorbehouden.
+              © 2025 123noodklaar.nl. Alle rechten voorbehouden.
             </p>
           </div>
         </div>
