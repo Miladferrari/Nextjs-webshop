@@ -321,6 +321,14 @@ class WooCommerceAPI {
     return this.fetchAPI(`orders/${orderId}`);
   }
 
+  async updateOrder(orderId: number, data: any): Promise<any> {
+    return this.fetchAPI(`orders/${orderId}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      useCache: false
+    });
+  }
+
   async getCouponByCode(code: string): Promise<Coupon | null> {
     try {
       // WooCommerce API requires searching coupons by code
