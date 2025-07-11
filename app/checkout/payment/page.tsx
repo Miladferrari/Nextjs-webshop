@@ -213,21 +213,45 @@ export default function PaymentPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Progress indicator */}
-        <div className="flex items-center justify-center mb-8">
-          <div className="flex items-center">
-            <div className="flex items-center text-medical-green">
-              <div className="rounded-full h-8 w-8 bg-medical-green text-white flex items-center justify-center text-sm font-bold">✓</div>
-              <span className="ml-2 text-sm font-medium">Winkelwagen</span>
-            </div>
-            <div className="w-20 h-1 bg-medical-green mx-2"></div>
-            <div className="flex items-center text-medical-green">
-              <div className="rounded-full h-8 w-8 bg-medical-green text-white flex items-center justify-center text-sm font-bold">✓</div>
-              <span className="ml-2 text-sm font-medium">Gegevens</span>
-            </div>
-            <div className="w-20 h-1 bg-medical-green mx-2"></div>
-            <div className="flex items-center text-medical-green">
-              <div className="rounded-full h-8 w-8 bg-medical-green text-white flex items-center justify-center text-sm font-bold">3</div>
-              <span className="ml-2 text-sm font-medium">Betaling</span>
+        <div className="max-w-3xl mx-auto mb-8">
+          <div className="flex items-start justify-evenly">
+            {/* Step 1: Winkelwagen - Completed */}
+            <Link href="/cart" className="relative flex flex-col items-center justify-start flex-1 group">
+              <span className="absolute w-full h-1 lg:h-[7px] bg-green-600 rounded-l-full top-4"></span>
+              <span className="w-[38px] h-[38px] shrink-0 rounded-full bg-white border-[5px] lg:border-[7px] border-green-600 flex items-center justify-center relative z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.01 9.5" className="text-green-600" width="16" height="13" role="img">
+                  <path d="M10.15 0 4.5 5.78l-2.64-2.5L0 5.14 4.5 9.5l7.51-7.64L10.15 0z" fill="currentColor"></path>
+                  <title>check</title>
+                </svg>
+              </span>
+              <span className="block text-center relative pt-2 leading-5 text-xs sm:text-sm text-steel-gray group-hover:text-medical-green transition-colors">
+                Jouw winkelwagen
+              </span>
+            </Link>
+
+            {/* Step 2: Bezorging - Completed */}
+            <Link href="/checkout" className="relative flex flex-col items-center justify-start flex-1 group">
+              <span className="absolute w-full h-1 lg:h-[7px] bg-green-600 top-4"></span>
+              <span className="w-[38px] h-[38px] shrink-0 rounded-full bg-white border-[5px] lg:border-[7px] border-green-600 flex items-center justify-center relative z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.01 9.5" className="text-green-600" width="16" height="13" role="img">
+                  <path d="M10.15 0 4.5 5.78l-2.64-2.5L0 5.14 4.5 9.5l7.51-7.64L10.15 0z" fill="currentColor"></path>
+                  <title>check</title>
+                </svg>
+              </span>
+              <span className="block text-center relative pt-2 leading-5 text-xs sm:text-sm text-steel-gray group-hover:text-medical-green transition-colors">
+                Bezorging
+              </span>
+            </Link>
+
+            {/* Step 3: Betalen - Current */}
+            <div className="relative flex flex-col items-center justify-start flex-1">
+              <span className="absolute w-full h-1 lg:h-[7px] bg-amber-orange rounded-r-full top-4"></span>
+              <span className="w-[38px] h-[38px] shrink-0 rounded-full bg-white border-[5px] lg:border-[7px] border-amber-orange flex items-center justify-center relative z-10">
+                <span className="font-bold text-lg lg:text-base text-amber-orange">3</span>
+              </span>
+              <span className="block text-center relative pt-2 leading-5 text-xs sm:text-sm font-semibold text-navy-blue">
+                Controleren en Betalen
+              </span>
             </div>
           </div>
         </div>
@@ -431,30 +455,69 @@ export default function PaymentPage() {
                 <button
                   type="submit"
                   disabled={paymentStatus.processing}
-                  className={`w-full py-4 px-6 rounded-full font-bold text-white transition-all
-                    ${paymentStatus.processing 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-medical-green hover:bg-medical-green/90 hover:shadow-lg'
-                    }`}
+                  className="w-full mt-6 bg-amber-orange text-white py-4 px-6 rounded-md font-semibold hover:bg-amber-orange/90 transition-all transform hover:scale-[1.02] disabled:bg-gray-300 disabled:transform-none flex items-center justify-center"
                 >
                   {paymentStatus.processing ? (
-                    <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Betaling wordt verwerkt...
-                    </span>
+                      Je betaling wordt verwerkt...
+                    </>
                   ) : (
-                    `Betaal €${total.toFixed(2)}`
+                    <>
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Veilig Betalen - €{total.toFixed(2)}
+                    </>
                   )}
                 </button>
+
+                {/* Money-back guarantee */}
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-steel-gray">
+                    <svg className="w-4 h-4 inline mr-1 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    14 Dagen Bedenktijd • Wettelijke Garantie • Verzekerde Verzending
+                  </p>
+                </div>
                 
-                <p className="text-center text-xs text-steel-gray">
+                <p className="text-center text-xs text-steel-gray mt-3">
                   Door te betalen gaat u akkoord met onze{' '}
                   <Link href="/terms" className="text-medical-green hover:underline">algemene voorwaarden</Link>
                 </p>
               </form>
+            </div>
+
+            {/* Customer testimonial */}
+            <div className="mt-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-amber-orange rounded-full flex items-center justify-center text-white font-semibold">
+                    MV
+                  </div>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm text-gray-900 italic">"Perfect! Betaling ging heel makkelijk en snel. Binnen 2 dagen had ik mijn bestelling al in huis."</p>
+                  <p className="text-xs text-steel-gray mt-1">- Maria van der Berg, geverifieerde klant</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment security badges */}
+            <div className="mt-6 flex items-center justify-center gap-4">
+              <img src="/images/ideal-logo.png" alt="iDEAL" className="h-8 opacity-60" />
+              <img src="/images/mastercard-logo.png" alt="Mastercard" className="h-8 opacity-60" />
+              <img src="/images/visa-logo.png" alt="Visa" className="h-8 opacity-60" />
+              <div className="flex items-center gap-2 text-xs text-steel-gray">
+                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>256-bit SSL Encryptie</span>
+              </div>
             </div>
           </div>
           

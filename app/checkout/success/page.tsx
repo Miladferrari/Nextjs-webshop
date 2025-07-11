@@ -43,6 +43,8 @@ function SuccessContent() {
           sessionStorage.removeItem('pendingOrderId');
           sessionStorage.removeItem('orderData');
           sessionStorage.removeItem('completedOrderId');
+          sessionStorage.removeItem('checkoutFormData');
+          sessionStorage.removeItem('selectedShippingRate');
           
           // Clear cart ONLY if payment is confirmed as successful
           const paymentSuccessStatuses = ['processing', 'completed', 'on-hold'];

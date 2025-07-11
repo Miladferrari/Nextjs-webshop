@@ -40,6 +40,48 @@ export default function CheckoutPage() {
     country: 'NL',
   });
 
+  // Restore form data from sessionStorage on mount
+  useEffect(() => {
+    const savedFormData = sessionStorage.getItem('checkoutFormData');
+    if (savedFormData) {
+      try {
+        const parsedData = JSON.parse(savedFormData);
+        setFormData(parsedData);
+        console.log('Restored checkout form data from session');
+      } catch (error) {
+        console.error('Error restoring form data:', error);
+      }
+    }
+
+    // Also restore shipping rate if saved
+    const savedShippingRate = sessionStorage.getItem('selectedShippingRate');
+    if (savedShippingRate && shipping.rates.length > 0) {
+      try {
+        const rate = JSON.parse(savedShippingRate);
+        const matchingRate = shipping.rates.find(r => r.method_id === rate.method_id);
+        if (matchingRate) {
+          setSelectedShippingRate(matchingRate);
+        }
+      } catch (error) {
+        console.error('Error restoring shipping rate:', error);
+      }
+    }
+  }, [shipping.rates]);
+
+  // Save form data to sessionStorage whenever it changes
+  useEffect(() => {
+    if (formData.firstName || formData.lastName || formData.email) {
+      sessionStorage.setItem('checkoutFormData', JSON.stringify(formData));
+    }
+  }, [formData]);
+
+  // Save selected shipping rate
+  useEffect(() => {
+    if (shipping.selectedRate) {
+      sessionStorage.setItem('selectedShippingRate', JSON.stringify(shipping.selectedRate));
+    }
+  }, [shipping.selectedRate]);
+
   // Country names mapping
   useEffect(() => {
     // Extended country codes to names mapping
