@@ -215,11 +215,21 @@ export default function CheckoutPage() {
       // Store order ID in session storage for later retrieval
       sessionStorage.setItem('pendingOrderId', result.order.id.toString());
       
+      // Store order data for payment page
+      sessionStorage.setItem('orderData', JSON.stringify({
+        ...result.order,
+        customer: orderData.billing,
+        shipping_method: orderData.shipping_lines[0]?.method_id || 'standard',
+        shipping_total: orderData.shipping_lines[0]?.total || '0',
+        items: items,
+        coupon: appliedCoupon
+      }));
+      
       // Clear cart - it will be restored if payment fails
       clearCart();
       
-      // Redirect to WooCommerce payment page
-      window.location.href = result.paymentUrl;
+      // Redirect to our custom payment page
+      router.push('/checkout/payment');
     } catch (err: any) {
       console.error('Order error:', err);
       
