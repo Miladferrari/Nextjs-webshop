@@ -225,13 +225,13 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>Voor 14:00 besteld, volgende werkdag in huis</span>
+                          <span>Binnen 2 dagen verzonden na ontvangst betaling</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>Gratis verzending bij bestellingen boven €75</span>
+                          <span>Verzending via UPS of PostNL met tracking</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -260,25 +260,25 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>30 dagen bedenktijd</span>
+                          <span>14 dagen bedenktijd na ontvangst</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>Gratis retourneren</span>
+                          <span>Retour binnen 14 dagen na melding (kosten voor klant)</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>Geld terug binnen 5 werkdagen</span>
+                          <span>Product moet ongebruikt zijn in originele verpakking</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <svg className="w-4 h-4 text-medical-green mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span>Ongeopende producten in originele verpakking</span>
+                          <span>Wettelijke garantie van toepassing</span>
                         </li>
                       </ul>
                     </div>
@@ -548,8 +548,8 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <div>
-                  <p className="font-semibold text-navy-blue text-sm">30 dagen bedenktijd</p>
-                  <p className="text-xs text-steel-gray">Niet goed? Geld terug!</p>
+                  <p className="font-semibold text-navy-blue text-sm">14 dagen bedenktijd</p>
+                  <p className="text-xs text-steel-gray">Na ontvangst van bestelling</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -557,8 +557,8 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <div>
-                  <p className="font-semibold text-navy-blue text-sm">Gratis verzending vanaf €75</p>
-                  <p className="text-xs text-steel-gray">Voor 14:00 besteld, morgen in huis</p>
+                  <p className="font-semibold text-navy-blue text-sm">Snelle verzending</p>
+                  <p className="text-xs text-steel-gray">Binnen 2 dagen na betaling</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -575,8 +575,8 @@ export default function ProductDetail({ product, relatedProducts }: ProductDetai
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <div>
-                  <p className="font-semibold text-navy-blue text-sm">2 jaar garantie</p>
-                  <p className="text-xs text-steel-gray">Op alle noodpakketten</p>
+                  <p className="font-semibold text-navy-blue text-sm">Wettelijke garantie</p>
+                  <p className="text-xs text-steel-gray">Op alle producten</p>
                 </div>
               </div>
             </div>

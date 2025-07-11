@@ -58,7 +58,7 @@ export default function CartPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </svg>
                   </div>
-                  <p className="text-sm text-steel-gray">Gratis verzending vanaf €50</p>
+                  <p className="text-sm text-steel-gray">Verzending binnen 2 dagen</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-medical-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -66,7 +66,7 @@ export default function CartPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                     </svg>
                   </div>
-                  <p className="text-sm text-steel-gray">90 dagen bedenktijd</p>
+                  <p className="text-sm text-steel-gray">14 dagen bedenktijd</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-medical-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -401,7 +401,7 @@ export default function CartPage() {
                       <svg className="w-4 h-4 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
-                      <span>Garantie</span>
+                      <span>Wettelijke garantie</span>
                     </div>
                   </div>
                   

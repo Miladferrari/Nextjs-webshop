@@ -64,10 +64,10 @@ export default function ContactPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-navy-blue text-lg mb-2">Bezoek ons</h3>
-            <p className="text-steel-gray mb-4">Ma-Vr: 9:00-18:00</p>
+            <h3 className="font-semibold text-navy-blue text-lg mb-2">Vestigingsadres</h3>
+            <p className="text-steel-gray mb-4">Geen bezoekadres</p>
             <p className="text-medical-green font-semibold">
-              Amsterdam, Nederland
+              Rhoon, Nederland
             </p>
           </div>
         </div>
@@ -189,15 +189,16 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-8">
             {/* Company Info Card */}
             <div className="bg-navy-blue text-white rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6">NoodKlaar B.V.</h3>
+              <h3 className="text-2xl font-bold mb-6">Art-of-Stones B.V.</h3>
               
               <div className="space-y-6">
                 <div>
                   <h4 className="font-semibold text-medical-green mb-2">Hoofdkantoor</h4>
                   <p className="text-gray-300">
-                    Hoofdstraat 123<br />
-                    1234 AB Amsterdam<br />
-                    Nederland
+                    Koperhoek 54<br />
+                    3162LA Rhoon<br />
+                    Nederland<br />
+                    <span className="text-sm italic">(geen bezoekadres)</span>
                   </p>
                 </div>
 
@@ -212,8 +213,8 @@ export default function ContactPage() {
                 <div>
                   <h4 className="font-semibold text-medical-green mb-2">KvK & BTW</h4>
                   <p className="text-gray-300">
-                    KvK: 12345678<br />
-                    BTW: NL123456789B01
+                    KvK: 95898476<br />
+                    BTW: NL867380998B01
                   </p>
                 </div>
               </div>

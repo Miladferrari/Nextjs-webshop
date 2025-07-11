@@ -1,27 +1,9 @@
 @import "tailwindcss";
 
-/* Emergency CSS Reset for favicon bug */
+/* Base styles */
 html {
-  font-size: 16px !important;
+  font-size: 16px;
   overflow-x: hidden;
-}
-
-/* Hide any rogue favicon displays */
-head {
-  display: none !important;
-}
-
-/* Force hide any favicon images that might be rendered in body */
-body img[src*="favicon"],
-body img[src$=".ico"],
-body link[rel*="icon"] {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
 }
 
 @theme {
@@ -75,9 +57,6 @@ body link[rel*="icon"] {
   }
 }
 
-html {
-  overflow-x: hidden;
-}
 
 body {
   background: var(--background);
@@ -98,19 +77,6 @@ img {
   height: auto;
 }
 
-/* Specifically target favicon elements to prevent large display */
-link[rel="icon"],
-link[rel="shortcut icon"],
-link[rel="apple-touch-icon"] {
-  display: none !important;
-}
-
-/* Ensure favicon images in the body don't display large */
-img[src*="favicon"],
-img[src*=".ico"] {
-  max-width: 32px !important;
-  max-height: 32px !important;
-}
 
 /* Reset any problematic icon styling */
 .icon, 

@@ -97,7 +97,7 @@ export default async function Home() {
                 </svg>
               </Link>
               <Link 
-                href="/pakket-kiezer" 
+                href="/quiz" 
                 className="inline-flex items-center justify-center gap-2 bg-white text-navy-blue px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-200"
               >
                 <span>Hulp bij kiezen</span>
@@ -110,13 +110,13 @@ export default async function Home() {
                 <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-sm">Gratis verzending vanaf €50</span>
+                <span className="text-sm">Verzending binnen 2 dagen</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-sm">90 dagen bedenktijd</span>
+                <span className="text-sm">14 dagen bedenktijd</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-medical-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,13 +149,13 @@ export default async function Home() {
               <svg className="w-6 h-6 text-medical-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
               </svg>
-              <span className="text-sm text-steel-gray">Gratis verzending vanaf €50</span>
+              <span className="text-sm text-steel-gray">Verzending binnen 2 dagen</span>
             </div>
             <div className="flex items-center justify-center md:justify-start gap-3">
               <svg className="w-6 h-6 text-medical-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
               </svg>
-              <span className="text-sm text-steel-gray">90 dagen bedenktijd</span>
+              <span className="text-sm text-steel-gray">14 dagen bedenktijd</span>
             </div>
           </div>
         </div>

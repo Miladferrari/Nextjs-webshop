@@ -42,7 +42,7 @@ const ComparisonSection = memo(function ComparisonSection() {
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold bg-medical-green/10 text-medical-green">✓</span>
-                  <span className="text-steel-gray text-sm">5 jaar garantie</span>
+                  <span className="text-steel-gray text-sm">Wettelijke garantie</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold bg-medical-green/10 text-medical-green">✓</span>

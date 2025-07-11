@@ -10,6 +10,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "framer-motion": "^12.23.3",
     "next": "15.3.4",
     "node-fetch": "^2.7.0",
     "react": "^19.0.0",

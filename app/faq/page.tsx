@@ -62,19 +62,19 @@ const faqItems: FAQItem[] = [
     id: 7,
     category: 'bestellen',
     question: "Hoe snel wordt mijn bestelling geleverd?",
-    answer: "Bestellingen voor 14:00 uur worden dezelfde dag verzonden. Levering binnen Nederland duurt 1 werkdag."
+    answer: "Bestellingen worden binnen 2 dagen na ontvangst van betaling verzonden. Verzending gebeurt via UPS of PostNL met tracking."
   },
   {
     id: 8,
     category: 'bestellen',
     question: "Wat zijn de verzendkosten?",
-    answer: "Verzending binnen Nederland kost €4,95. Boven €50 is verzending gratis."
+    answer: "Verzendkosten worden berekend bij checkout. Verzending gebeurt via UPS of PostNL met tracking."
   },
   {
     id: 9,
     category: 'bestellen',
     question: "Kan ik mijn bestelling retourneren?",
-    answer: "U heeft 90 dagen bedenktijd voor ongeopende pakketten. Retourneren is gratis via ons retourlabel."
+    answer: "U heeft 14 dagen bedenktijd na ontvangst. Retour sturen kan binnen 14 dagen na melding. Retourkosten zijn voor de klant. Product moet ongebruikt, in originele staat en verpakking teruggestuurd worden."
   },
   
   // Gebruik & Onderhoud

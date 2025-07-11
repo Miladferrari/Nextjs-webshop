@@ -27,8 +27,8 @@ const Footer = memo(function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy-blue mb-1">Gratis verzending vanaf €50</h4>
-                  <p className="text-steel-gray text-sm">Direct uit voorraad leverbaar</p>
+                  <h4 className="font-semibold text-navy-blue mb-1">Verzending binnen 2 dagen</h4>
+                  <p className="text-steel-gray text-sm">Na ontvangst van betaling</p>
                   <span className="text-medical-green text-sm group-hover:underline">Meer informatie →</span>
                 </div>
               </div>
@@ -42,8 +42,8 @@ const Footer = memo(function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy-blue mb-1">90 dagen bedenktijd</h4>
-                  <p className="text-steel-gray text-sm">Ruim de tijd om te beslissen</p>
+                  <h4 className="font-semibold text-navy-blue mb-1">14 dagen bedenktijd</h4>
+                  <p className="text-steel-gray text-sm">Retour binnen 14 dagen na melding</p>
                   <span className="text-medical-green text-sm group-hover:underline">Meer informatie →</span>
                 </div>
               </div>
@@ -57,8 +57,8 @@ const Footer = memo(function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy-blue mb-1">Veilig & betrouwbaar</h4>
-                  <p className="text-steel-gray text-sm">Klanten geven ons een 4.7/5</p>
+                  <h4 className="font-semibold text-navy-blue mb-1">Wettelijke garantie</h4>
+                  <p className="text-steel-gray text-sm">Veilig & betrouwbaar</p>
                   <span className="text-medical-green text-sm group-hover:underline">Meer informatie →</span>
                 </div>
               </div>
@@ -73,12 +73,12 @@ const Footer = memo(function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-navy-blue">Over NoodKlaar</h4>
+              <h4 className="text-lg font-semibold mb-4 text-navy-blue">Navigatie</h4>
               <ul className="space-y-2">
-                <li><Link href="/over-ons" className="text-steel-gray hover:text-medical-green transition-colors">Over ons</Link></li>
-                <li><Link href="/duurzaamheid" className="text-steel-gray hover:text-medical-green transition-colors">Duurzaamheid</Link></li>
-                <li><Link href="/blog" className="text-steel-gray hover:text-medical-green transition-colors">Blog & Tips</Link></li>
-                <li><Link href="/partners" className="text-steel-gray hover:text-medical-green transition-colors">Partners</Link></li>
+                <li><Link href="/" className="text-steel-gray hover:text-medical-green transition-colors">Home</Link></li>
+                <li><Link href="/shop" className="text-steel-gray hover:text-medical-green transition-colors">Shop</Link></li>
+                <li><Link href="/quiz" className="text-steel-gray hover:text-medical-green transition-colors">Pakket Kiezer</Link></li>
+                <li><Link href="/cart" className="text-steel-gray hover:text-medical-green transition-colors">Winkelwagen</Link></li>
               </ul>
             </div>
 
@@ -86,10 +86,10 @@ const Footer = memo(function Footer() {
             <div>
               <h4 className="text-lg font-semibold mb-4 text-navy-blue">Hulp & Contact</h4>
               <ul className="space-y-2">
-                <li><Link href="/klantenservice" className="text-steel-gray hover:text-medical-green transition-colors">Klantenservice</Link></li>
                 <li><Link href="/faq" className="text-steel-gray hover:text-medical-green transition-colors">Veelgestelde vragen</Link></li>
                 <li><Link href="/contact" className="text-steel-gray hover:text-medical-green transition-colors">Contact</Link></li>
-                <li><Link href="/zakelijk" className="text-steel-gray hover:text-medical-green transition-colors">Zakelijk bestellen</Link></li>
+                <li><Link href="/over-ons" className="text-steel-gray hover:text-medical-green transition-colors">Over ons</Link></li>
+                <li><Link href="/blog" className="text-steel-gray hover:text-medical-green transition-colors">Blog & Tips</Link></li>
               </ul>
             </div>
 
@@ -172,7 +172,7 @@ const Footer = memo(function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-300 text-center md:text-left">
-              Alle prijzen op onze website zijn excl. eventuele verzendkosten.
+              Verzending via UPS of PostNL met tracking. Retourkosten zijn voor de klant.
             </p>
             <div className="flex items-center gap-6 text-sm">
               <Link href="/privacy" className="text-gray-300 hover:text-medical-green transition-colors">
