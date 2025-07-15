@@ -2,6 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { woocommerce } from '@/lib/woocommerce';
 
 export async function GET(request: NextRequest) {
+  // Set no-cache headers to ensure fresh data
+  const headers = {
+    'Cache-Control': 'no-store, no-cache, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  };
+
   try {
     const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
@@ -9,13 +16,6 @@ export async function GET(request: NextRequest) {
     const total = searchParams.get('total');
     const couponCode = searchParams.get('coupon');
     const postcode = searchParams.get('postcode');
-
-    // Set no-cache headers to ensure fresh data
-    const headers = {
-      'Cache-Control': 'no-store, no-cache, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
-    };
 
     // Fetch allowed countries
     if (action === 'countries') {

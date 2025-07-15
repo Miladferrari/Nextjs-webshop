@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import AnnouncementBar from './AnnouncementBar';
@@ -8,15 +8,25 @@ import AnnouncementBar from './AnnouncementBar';
 export default function StickyHeader() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(120); // Default height
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
     // Calculate header height after mount
-    const header = document.getElementById('sticky-header');
-    if (header) {
-      setHeaderHeight(header.offsetHeight);
-    }
+    const calculateHeight = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+    
+    calculateHeight();
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateHeight);
+    
+    return () => {
+      window.removeEventListener('resize', calculateHeight);
+    };
   }, []);
 
   // Don't show header on checkout pages
@@ -24,29 +34,13 @@ export default function StickyHeader() {
     return null;
   }
 
-  if (!mounted) {
-    return (
-      <>
-        <AnnouncementBar />
-        <Header />
-      </>
-    );
-  }
-
   return (
     <>
-      {/* Placeholder to maintain layout */}
-      <div style={{ height: headerHeight || 'auto' }}>
-        {!headerHeight && (
-          <>
-            <AnnouncementBar />
-            <Header />
-          </>
-        )}
-      </div>
+      {/* White placeholder to maintain layout and push content down */}
+      <div style={{ height: headerHeight }} className="bg-white" />
       
       {/* Fixed header */}
-      <div id="sticky-header" className="fixed top-0 left-0 right-0 z-50 shadow-sm">
+      <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 shadow-sm">
         <AnnouncementBar />
         <Header />
       </div>

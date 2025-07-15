@@ -278,7 +278,7 @@ export default async function Home() {
                 const priceDisplay = lowestPrice ? `Vanaf €${Math.floor(lowestPrice)}` : 'Bekijk prijzen';
                 
                 // Define features based on category (you can customize these)
-                const categoryFeatures = {
+                const categoryFeatures: Record<string, string[]> = {
                   default: [
                     'Premium kwaliteit',
                     'Direct leverbaar',

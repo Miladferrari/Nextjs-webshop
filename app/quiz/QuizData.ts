@@ -1,5 +1,5 @@
 import type { Product } from '@/lib/woocommerce';
-import { fetchProducts } from '@/lib/woocommerce';
+import { woocommerce } from '@/lib/woocommerce';
 
 export interface QuizQuestion {
   id: string;
@@ -76,9 +76,8 @@ export const QuizData: QuizQuestion[] = [
 export async function getRecommendedProducts(answers: QuizAnswers): Promise<Product[]> {
   try {
     // Fetch all products
-    const allProducts = await fetchProducts({
-      per_page: 100,
-      status: 'publish'
+    const allProducts = await woocommerce.getProducts({
+      per_page: 100
     });
 
     // Score each product based on answers
@@ -120,9 +119,8 @@ export async function getRecommendedProducts(answers: QuizAnswers): Promise<Prod
       else if (type === 'complete' && (name.includes('compleet') || name.includes('uitgebreid') || name.includes('premium'))) score += 2;
       else if (type === 'balanced' && !name.includes('basis') && !name.includes('premium')) score += 1;
 
-      // Bonus points for popular/featured products
-      if (product.featured) score += 1;
-      if (product.total_sales && product.total_sales > 10) score += 1;
+      // Bonus points for popular products
+      // Note: featured and total_sales are not available in the Product type
 
       return { product, score };
     });
@@ -140,7 +138,7 @@ export async function getRecommendedProducts(answers: QuizAnswers): Promise<Prod
         .filter(p => 
           p.stock_status === 'instock' && 
           !recommended.find(r => r.id === p.id) &&
-          (p.featured || parseFloat(p.price) < 150)
+          parseFloat(p.price) < 150
         )
         .slice(0, 3 - recommended.length);
       

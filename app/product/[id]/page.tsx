@@ -21,12 +21,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
     }
 
     // Fetch best-selling products for "Vaak samen gekocht" section
-    const bestSellingProducts = await woocommerce.getProducts({
-      per_page: 4,
+    const allBestSellingProducts = await woocommerce.getProducts({
+      per_page: 5, // Fetch one extra in case we need to filter out the current product
       orderby: 'popularity',
-      order: 'desc',
-      exclude: [product.id] // Exclude current product
+      order: 'desc'
     });
+
+    // Filter out the current product and take only 4
+    const bestSellingProducts = allBestSellingProducts
+      .filter(p => p.id !== product.id)
+      .slice(0, 4);
 
     return <ProductDetailEnhanced product={product} relatedProducts={bestSellingProducts} />;
   } catch (error) {
