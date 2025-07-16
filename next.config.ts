@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: 'wordpress.restaurantmahzen.nl',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '123noodklaar.nl',
+        pathname: '/**',
+      },
       // Add other image domains if needed
     ],
     formats: ['image/avif', 'image/webp'],

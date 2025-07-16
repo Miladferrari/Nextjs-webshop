@@ -5,9 +5,9 @@ interface WooCommerceConfig {
 }
 
 const config: WooCommerceConfig = {
-  baseUrl: 'https://wordpress.restaurantmahzen.nl/wp-json/wc/v3',
-  consumerKey: 'ck_6611c9935688b973c536fc2633565cdb1dda0262',
-  consumerSecret: 'cs_b4b55890e3a947bb72305f80e304690e835820e0'
+  baseUrl: 'https://123noodklaar.nl/wp-json/wc/v3',
+  consumerKey: 'ck_7ba5d6703b033df5b375ba65939defcc8a130782',
+  consumerSecret: 'cs_3d61f6d6ade31f287811e4f70811b9dca549e81e'
 };
 
 export interface Product {

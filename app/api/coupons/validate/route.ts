@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
-const WOOCOMMERCE_URL = 'https://wordpress.restaurantmahzen.nl/wp-json/wc/v3';
-const CONSUMER_KEY = 'ck_5c05d4b7c9fe3113dc376453e4b39e14aba065d2';
-const CONSUMER_SECRET = 'cs_8bb20ca6b085a45b859eddb6217e8c2edc4cc3ed';
+const WOOCOMMERCE_URL = 'https://123noodklaar.nl/wp-json/wc/v3';
+const CONSUMER_KEY = 'ck_7ba5d6703b033df5b375ba65939defcc8a130782';
+const CONSUMER_SECRET = 'cs_3d61f6d6ade31f287811e4f70811b9dca549e81e';
 
 export async function POST(request: Request) {
   try {
